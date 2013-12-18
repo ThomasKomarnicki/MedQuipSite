@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="mqStyle1.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+ <link rel="stylesheet" href="jquery-ui-1.10.3.custom\css\mq_menu\jquery-ui-1.10.3.custom.css">
+</head>
+<body>
+
+<div id="container" style="width:960px;margin:auto">
+
+	<div id="header">
+		<img src="logo.jpg" height="119" width="464">
+		
+		<div class="accountNav">
+			<span style="border-left:none">
+				<a class="AccountNavLink" href="http://www.reddit.com">Login or Register</a>
+			</span>
+			<span>
+				<a class="AccountNavLink" href="http://www.reddit.com">My Cart (0)</a>
+			</span>
+			<span>
+				<a class="AccountNavLink" href="http://www.reddit.com">Checkout</a>
+			</span>
+		</div>
+	</div>
+	
+	
+	<div class="topMenu">
+		<span style="border-left:none">
+			<a class="topMenuButton" href="http://www.reddit.com">Home</a>
+		</span>		
+		<span>
+			<input class="productSearchBox" type="text" name="fname" placeholder="Product Search">
+			<a class="mqButton" href="#"> Search</a>
+		</span>
+		<span>
+			<a class="topMenuButton" href="http://www.reddit.com">About Us</a>
+		</span>	
+		<span>
+			<a class="topMenuButton" href="http://www.reddit.com">Contact Us</a>
+		</span>			
+	</div>
+	
+	<!-- content -->
+	
+	<div class="contentHolder" style="height:auto;overflow:hidden;position:relative;" >
+		<div style="width:956px;float:left;height:100%;border:none;overflow:hidden;position:absolute;left:0px;">
+			<div style="width:752px;float:left;height:100%;border-left:none">
+				<!-- product -->
+				<div class="header" style="">
+				Register
+				</div>
+				<div style="width:680px;margin-left:36px;">
+				<!-- sign in-->
+					<div class="register">
+						<form>
+							<input type="email" placeholder="email" class="registerInput">
+							<input type="password" placeholder="password" class="registerInput">
+						</form>
+						<a href="#" class="addToCart" style="width:25%"> Login</a>
+						<div style="text-align:center"> or </div>
+						<a href="#" style="text-align:center;width:25%;" class="greyButton" > Register </a>
+					</div>
+					<div class="register" style="display:none">
+						<form>
+							<input type="text" placeholder="First Name" class="registerInput">
+							<input type="text" placeholder="Last Name" class="registerInput">
+							<input type="email" placeholder="email" class="registerInput">
+							<input type="password" placeholder="password" class="registerInput">
+						</form>
+						<a href="#" style="text-align:center;width:25%;" class="greyButton" > Register </a>
+					</div>
+				
+				</div>
+			</div>
+			<div style="width:202px;float:left;height:100%;">
+				<div class="header">
+					Recently Viewed
+				</div>
+				<div align="center" id="recentProducts">
+					
+				</div>
+				<div align="center" style="margin-top:25px;">
+					<a href="#"><img src="scheduleservice.jpg"></img></a>
+					<a href="#"><img style="margin-top:25px;" src="catalog.jpg"></img></a>
+				</div>
+			</div> 
+		</div>
+		
+	</div>
+	
+</div>
+<div class="footer">
+	
+</div>
+
+ 
+</body>
+</html>

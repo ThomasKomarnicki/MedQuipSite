@@ -1,0 +1,11 @@
+from django.conf.urls import patterns, url
+from django.http import HttpResponse
+
+from Customers import views
+
+urlpatterns = patterns('',
+    url(r'^myAccount/$', views.my_account, name='my_account'),
+    url(r'^Register/$', views.register, name='register'),
+    
+)
+

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="mqStyle1.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+ <link rel="stylesheet" href="jquery-ui-1.10.3.custom\css\mq_menu\jquery-ui-1.10.3.custom.css">
+</head>
+<body>
+
+<div id="container" style="width:960px;margin:auto">
+
+	<div id="header">
+		<img src="logo.jpg" height="119" width="464">
+		
+		<div class="accountNav">
+			<span style="border-left:none">
+				<a class="AccountNavLink" href="http://www.reddit.com">Login or Register</a>
+			</span>
+			<span>
+				<a class="AccountNavLink" href="http://www.reddit.com">My Cart (0)</a>
+			</span>
+			<span>
+				<a class="AccountNavLink" href="http://www.reddit.com">Checkout</a>
+			</span>
+		</div>
+	</div>
+	
+	
+	<div class="topMenu">
+		<span style="border-left:none">
+			<a class="topMenuButton" href="http://www.reddit.com">Home</a>
+		</span>		
+		<span>
+			<input class="productSearchBox" type="text" name="fname" placeholder="Product Search">
+			<a class="mqButton" href="#"> Search</a>
+		</span>
+		<span>
+			<a class="topMenuButton" href="http://www.reddit.com">About Us</a>
+		</span>	
+		<span>
+			<a class="topMenuButton" href="http://www.reddit.com">Contact Us</a>
+		</span>			
+	</div>
+	
+	<!-- content -->
+	
+	<div class="contentHolder" style="border-left:none;" >
+		<div style="width:217px;float:left;height:100%;">
+			<div class="header" style="border:none;">
+			Online Catalog	
+			</div>
+			<ul id="menu" style="z-index:1;">
+			  <li><a href="#">Item 1</a></li>
+			  <li><a href="#">Item 2</a></li>
+			  <li><a href="#">Item 3</a>
+				<ul>
+				  <li><a href="#">Item 3-1</a></li>
+				  <li><a href="#">Item 3-2</a></li>
+				  <li><a href="#">Item 3-3</a></li>
+				  <li><a href="#">Item 3-4</a></li>
+				  <li><a href="#">Item 3-5</a></li>
+				</ul>
+			  </li>
+			  <li><a href="#">Item 4</a></li>
+			  <li><a href="#">Item 5</a></li>
+			</ul>
+			
+			<script>
+			$( "#menu" ).menu();
+			</script>
+		</div>
+		<div style="width:741px;float:left;height:450px;border:none">
+			<div style="width:535px;float:left;height:100%;">
+				<ul align="center" class="ppt">
+					<li id="mainImage1"><a href="http://www.reddit.com"><img src="main_image.jpg" alt="Balance System SD" /></a></li>
+					<li id="mainImage2"><a href="http://www.reddit.com"><img src="main_image_ultrasound.jpg" alt="EVO Ultrasound" /></a></li>
+				</ul>
+				<div id="pptButtons" align="right"style="float:bottom;position:relative;display:block;margin-right:10px;border:none;">
+					<img id="back" src="prevImage.jpg"></img>
+					<a class="slideButton" id="1"></a>
+					<a class="slideButton" id="2"></a>
+					<img id="fwd" src="nextImage.jpg"></img>
+				</div>
+
+				
+				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+				<script type="text/javascript" src="slideshow.js"></script>
+				
+			</div>
+			<div style="width:202px;float:left;height:100%;">
+				<div class="header" style="border:none;">
+					Recently Viewed
+				</div>
+				<div align="center" id="recentProducts">
+					
+				</div>
+				<div align="center" style="margin-top:25px;">
+					<a href="#"><img src="scheduleservice.jpg"></img></a>
+					<a href="#"><img style="margin-top:25px;" src="catalog.jpg"></img></a>
+				</div>
+			</div> 
+		</div>
+		<div class="bottomProducts"style="float:left;display:table;width:739px;height:300px;" align="right">
+		<!-- bottom products-->
+			<span align="center" style="height:100%;border:none;">
+				<div class="productThumbnail" style="height:100%">
+					<a href="#"><img src="product1.jpg"></a>
+					<div class="title" style="margin-bottom:10px;margin-top:10px;">
+						Product Title actually no, Long PRODUCT TITLE
+					</div>
+					<div class="price">
+						$1,999.95
+					</div>
+					<div style="margin-top:25px">
+						<a class="addToCart" href="#" >Add To Cart</a>
+					</div>
+				</div>
+			</span>
+			<span align="center" style="height:100%;border:none;">
+				<div class="productThumbnail" style="height:100%">
+					<a href="#"><img src="product1.jpg"></a>
+					<div class="title" style="margin-bottom:10px;margin-top:10px;">
+						Product Title 
+					</div>
+					<div class="price">
+						$1,999.95
+					</div>
+					<div style="margin-top:25px">
+						<a class="addToCart" href="#" >Add To Cart</a>
+					</div>
+				</div>
+			</span>
+			<span align="center" style="height:100%;border:none;">
+				<div class="productThumbnail" style="height:100%">
+					<a href="#"><img src="product1.jpg"></a>
+					<div class="title" style="margin-bottom:10px;margin-top:10px;">
+						Product Title 
+					</div>
+					<div class="price">
+						$1,999.95
+					</div>
+					<div style="margin-top:25px">
+						<a class="addToCart" href="#" >Add To Cart</a>
+					</div>
+				</div>
+			</span>
+			<span align="center" style="height:100%;border:none;">
+				<div class="productThumbnail" style="height:100%">
+					<a href="#"><img src="product1.jpg"></a>
+					<div class="title" style="margin-bottom:10px;margin-top:10px;">
+						Product Title 
+					</div>
+					<div class="price">
+						$1,999.95
+					</div>
+					<div style="margin-top:25px">
+						<a class="addToCart" href="#" >Add To Cart</a>
+					</div>
+				</div>
+			</span>			
+		</div>
+	</div>
+	
+</div>
+<div class="footer">
+	
+</div>
+
+ 
+</body>
+</html>

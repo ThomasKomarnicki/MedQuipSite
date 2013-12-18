@@ -1,0 +1,24 @@
+from django.shortcuts import render
+from django.http import HttpResponse, Http404
+from Products.models import Product
+import Products.view_data
+
+
+def product(request, product_sku):
+    try:
+        product = Product.objects.get(pk=product_sku)
+    except Product.DoesNotExist:
+        raise Http404
+    return render(request, 'Products/detail.html', {'product': product})
+
+def home(request):
+#     try:
+#         
+#     except Product.DoesNotExist:
+#         raise Http404
+    return render(request, 'home.html',)
+
+
+
+
+

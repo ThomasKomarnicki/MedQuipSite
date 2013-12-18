@@ -1,0 +1,25 @@
+{% extends "3_column_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% for productRow in products %}
+	<div class="productRow" style="display:table;margin-top:30px;margin-bottom:30px;height:auto;width:100%" >
+	{% for product in productRow %}
+		<span align="left" style="height:100%;border:none;vertical-align:middle;">
+			<div class="productThumbnail" style="height:100%">
+				<a href="product/{{ product.sku }}"><img src="static/Products/images/{{ product.sku }}.jpg"></a>
+				<div class="title" style="margin-bottom:10px;margin-top:10px;">
+					<a class="productLink"href="/Products/{{product.sku}}">{{product.name}}</a>
+				</div>
+				<div class="price">
+					${{product.price}}
+				</div>
+				<div style="margin-top:25px">
+					<a class="addToCart" href="#" >Add To Cart</a>
+				</div>
+			</div>
+		</span>
+	{% endfor %}
+	</div>
+{% endfor %}
+{% endblock %}

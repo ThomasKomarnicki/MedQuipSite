@@ -1,0 +1,39 @@
+from django.shortcuts import render
+from django.http import HttpResponse, Http404
+from Products.models import Product,Category
+import Products.view_data
+
+
+def product(request, product_sku):
+    try:
+        product = Product.objects.get(pk=product_sku)
+        category_links = Products.view_data.get_category_links(product=product)
+        categories = Products.view_data.get_categories(product.category_id)
+    except Product.DoesNotExist:
+        raise Http404
+    return render(request, 'Products/detail.html', {'product': product,'category_links':category_links,'categories':categories})
+
+def home(request):
+#     try:
+#         
+#     except Product.DoesNotExist:
+#         raise Http404
+    categories = Products.view_data.get_categories()
+    return render(request, 'home.html', {'categories':categories})
+
+def category(request, category_id):
+    try:
+        category = Category(id=category_id)
+        category_links = Products.view_data.get_category_links(category=category)
+        categories = Products.view_data.get_categories(category_id)
+        products = Products.view_data.get_products_in_category(category,categories=categories)
+    except Category.DoesNotExist:
+        raise Http404
+    
+    
+    return render(request, 'category.html', {'category_links':category_links,'categories':categories,'products':products})
+
+
+
+
+

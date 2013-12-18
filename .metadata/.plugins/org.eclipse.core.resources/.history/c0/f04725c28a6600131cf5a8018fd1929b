@@ -1,0 +1,86 @@
+from Products.models import Product, Category, Attribute
+
+
+def add_parent_ids(category,category_list):
+    if(category.parent_id):
+        parent_category = Category.objects.filter(id=category.parent_id)
+        category_list.append(parent_category)
+        add_parent_ids(parent_category,category_list)
+    
+def get_category_links(product=None, category=None):
+    if(product):
+        category = Category.objects.filter(id=product.category_id)
+        
+    category_list = []
+    add_parent_ids(category,category_list)
+    category_list.reverse()
+    return category_list    
+    
+        
+def add_sub_category(category):
+    if(category.children_ids):
+        category.sub_categories = []
+        for id in category.children_ids.split(','):
+            id = int(id)
+            sub_category = Category.objects.filter(id=id)
+            category.sub_categories.append(sub_category)
+            
+    if(hasattr(category,'sub_categories')):
+        print str(category) + " has attribute - sub_categories"
+        for sub_category in category.sub_categories:
+            add_sub_category(sub_category)
+
+def get_categories(category_id=None):
+    category_tree = []
+    if(category_id):
+        category = Category.objects.all().filter(id=category_id).get()
+        print "getting categories for " + str(category)
+        id_list = []
+        if(category.children_ids):
+            print "category has child categories"
+            for id in category.children_ids.split(','):
+                id = int(id)
+                id_list.append(id)
+                pass
+            categories = Category.objects.filter(id=id_list).iterator() #i think this works?
+            for category in categories:
+                category_tree.append(category)
+    else:
+        categories = Category.objects.all()
+        for category in categories:
+            if( not category.parent_id):
+#                 print category
+                category_tree.append(category)
+    
+    category_tree.sort(key=lambda x: x.name, reverse=False)  
+    for category in category_tree:
+        add_sub_category(category)
+    
+    return category_tree
+
+
+def get_products_in_category(category,categories=None):
+    if(not categories):
+        categories = get_categories(category_id=category.id)
+    all_products = []
+    add_products(category,all_products)
+    
+    
+def add_products(category,all_products):
+    try:
+        products_in_category = Product.objects.filter(category_id=category.id)
+    except:
+        print "getting products failed for " + str(category)
+        
+    for product in products_in_category:
+        all_products.append(product)
+    children_ids = category.children_ids
+    if(children_ids):
+        splits = children_ids.split(',')
+        for split in splits:
+            add_products(Category.objects.filter(id=int(split)),all_products)
+    
+    
+    
+    
+    
