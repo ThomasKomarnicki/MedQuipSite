@@ -363,10 +363,12 @@ height:100%;
 
 div.register{
 margin:auto;
-width:400px;
+width:312px;
 border: 2px solid;
 border-color:#444444;
 margin-top:50px;
+float:left;
+padding:10px;
 }
 
 div.register input,
@@ -491,6 +493,13 @@ border-bottom:none;
     position:relative;
     left:68%;
     overflow:hidden;
+}
+
+form.registerForm label{
+display:block;
+margin:auto;
+margin-top:10px;
+margin-bottom:5px;
 }
 
 

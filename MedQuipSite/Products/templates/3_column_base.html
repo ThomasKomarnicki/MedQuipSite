@@ -18,13 +18,19 @@
 		
 		<div class="accountNav">
 			<span style="border-left:none">
-				<a class="AccountNavLink" href="http://www.reddit.com">Login or Register</a>
+				{% if logged_in %}
+				<a class="AccountNavLink" href="sign_out/">Sign Out</a>
+				{% else %}
+				<a class="AccountNavLink" href="Register/">Login or Register</a>
+				{% endif %}
 			</span>
 			<span>
-				<a class="AccountNavLink" href="http://www.reddit.com">My Cart (0)</a>
+				<a class="AccountNavLink" href="Cart/">
+				My Cart ({{ cart_item_count }})
+				</a>
 			</span>
 			<span>
-				<a class="AccountNavLink" href="http://www.reddit.com">Checkout</a>
+				<a class="AccountNavLink" href="Cart/Checkout/">Checkout</a>
 			</span>
 		</div>
 	</div>
@@ -35,8 +41,10 @@
 			<a class="topMenuButton" href="">Home</a>
 		</span>		
 		<span>
-			<input class="productSearchBox" type="text" name="fname" placeholder="Product Search">
-			<a class="mqButton" href="#"> Search</a>
+			<form action="/Search/" method="get">
+				<input class="productSearchBox" type="text" name="product_query" placeholder="Product Search">
+				<input type="submit" value="Search"class="mqButton"></input>
+			</form>
 		</span>
 		<span>
 			<a class="topMenuButton" href="http://www.reddit.com">About Us</a>
@@ -109,15 +117,21 @@
 					{% endblock content %}
 				</div>
 				<div id="col3">
+					{% if recent %}
 					<div class="header" style="border:none;">
 						Recently Viewed
 					</div>
 					<div align="center" id="recentProducts">
-						
+						{% for product in recent%}
+						<div style="margin-top:5px;">
+							<a class="productLink"href="/Products/{{product.sku}}">{{product.name}}</a>
+						</div>
+						{% endfor %}
 					</div>
+					{% endif %}
 					<div align="center" style="margin-top:25px;">
 						<a href="#"><img src="{% static 'Products/images/scheduleservice.jpg' %}"></img></a>
-						<a href="#"><img style="margin-top:25px;" src="{% static 'Products/images/catalog.jpg' %}"></img></a>
+						<a href="#"><img style="margin-top:15px;" src="{% static 'Products/images/catalog.jpg' %}"></img></a>
 					</div>
 				</div>
 			</div>

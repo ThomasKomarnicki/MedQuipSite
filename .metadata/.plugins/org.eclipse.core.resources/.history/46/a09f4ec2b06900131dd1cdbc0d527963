@@ -1,0 +1,35 @@
+from django.shortcuts import render
+from MedQuipSite.forms import RegisterForm,LoginForm
+from Customers.models import Customer
+import hashlib
+
+# Create your views here.
+
+def my_account(request):
+    
+    
+    return render(request)
+
+def register(request):
+    if request.method == 'POST':
+        pass
+        
+    else:
+        return render(request,'register.html')
+
+def login(request):
+    form = LoginForm(request.GET)
+    if form.is_valid():
+        customer = Customer.objects.filter(email=request.GET['email'])
+        input_password = hashlib.sha224(request.GET['password']).hexdigest()
+    
+
+def orders(request):
+    
+    
+    return render(request,'register.html')
+
+def order(request,order_id):
+    
+    
+    return render(request,'register.html')

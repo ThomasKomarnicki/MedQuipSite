@@ -18,8 +18,9 @@ class Customer(models.Model):
     first = models.CharField(max_length=200)
     last = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
+    orginization = models.CharField(max_length=200,blank=True)
     password = models.CharField(max_length=200)
-    orders = models.CharField(max_length=200)
+    orders = models.CharField(max_length=1000,blank=True)
     
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.first + ' '+ self.last

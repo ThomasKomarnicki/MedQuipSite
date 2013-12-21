@@ -2,7 +2,16 @@
 {% load staticfiles %}
 
 {% block content %}
-{% for productRow in SearchResults %}
+<div class="header" style="border:none;">
+	Search Results
+</div>
+{% if not products %}
+<div>
+your search returned no results
+</div>
+{% else %}
+
+{% for productRow in products %}
 	<div class="productRow" style="display:table;height:300px;" >
 	{% for product in productRow %}
 		<span align="center" style="height:100%;border:none;">
@@ -22,4 +31,6 @@
 	{% endfor %}
 	</div>
 {% endfor %}
+
+{% endif %}
 {% endblock %}

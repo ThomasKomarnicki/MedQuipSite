@@ -1,139 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="mqStyle1.css">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
- <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
- <link rel="stylesheet" href="jquery-ui-1.10.3.custom\css\mq_menu\jquery-ui-1.10.3.custom.css">
-</head>
-<body>
+{% extends "content_right_column_base.html" %}
+{% load staticfiles %}
 
-<div id="container" style="width:960px;margin:auto">
-
-	<div id="header">
-		<img src="logo.jpg" height="119" width="464">
-		
-		<div class="accountNav">
-			<span style="border-left:none">
-				<a class="AccountNavLink" href="http://www.reddit.com">Login or Register</a>
-			</span>
-			<span>
-				<a class="AccountNavLink" href="http://www.reddit.com">My Cart (0)</a>
-			</span>
-			<span>
-				<a class="AccountNavLink" href="http://www.reddit.com">Checkout</a>
-			</span>
-		</div>
+{% block content %}
+<!-- product -->
+<div class="header" style="">
+My Cart
+</div>
+<div style="width:680px;margin-left:36px;">
+	<div style="margin-top:20px;margin-bottom:20px;" align="right">
+		<a class="addToCart" href="/Cart/Checkout">Checkout</a>
 	</div>
-	
-	
-	<div class="topMenu">
-		<span style="border-left:none">
-			<a class="topMenuButton" href="http://www.reddit.com">Home</a>
-		</span>		
-		<span>
-			<input class="productSearchBox" type="text" name="fname" placeholder="Product Search">
-			<a class="mqButton" href="#"> Search</a>
-		</span>
-		<span>
-			<a class="topMenuButton" href="http://www.reddit.com">About Us</a>
-		</span>	
-		<span>
-			<a class="topMenuButton" href="http://www.reddit.com">Contact Us</a>
-		</span>			
+	{% if not cart %}
+	<div>
+		no products in cart
 	</div>
-	
-	<!-- content -->
-	
-	<div class="contentHolder" style="height:auto;overflow:hidden;position:relative;" >
-		<div style="width:956px;float:left;height:100%;border:none;overflow:hidden;position:absolute;left:0px;">
-			<div style="width:752px;float:left;height:100%;border-left:none">
-				<!-- product -->
-				<div class="header" style="">
-				My Cart
-				</div>
-				<div style="width:680px;margin-left:36px;">
-					<div style="margin-top:20px;margin-bottom:20px;" align="right">
-						<a class="addToCart" href="#">Checkout</a>
-					</div>
-					<div>
-						no products in cart
-					</div>
-					<div class="cartHeader" align="center">
-					<!-- cart products header -->
-						<span>Remove</span>
-						<span style="position:absolute;left:20%;">Product Title</span>
-						<span style="position:absolute;left:47%;">Unit Price</span>
-						<span style="position:absolute;left:58%;">Qty</span>
-						<span style="position:absolute;left:65%;">Subtotal</span>
-					</div>
-					<div>
-
-					<!-- in cart products -->
-						<div class="inCartProducts" style="dispaly:block">
-							<div style="width:7%;">
-							
-							</div>
-							<div style="width:15%;margin-left:5px;margin-right:5px;">
-							
-							</div>	
-							<div style="width:37%;margin-left:5px">
-							
-							</div>	
-							<div style="width:14%;">
-							
-							</div>	
-							<div style="width:10%;">
-							
-							</div>	
-							<div style="width:14%;">
-							
-							</div>								
-						</div>
-					</div>
-					<div style="margin-top:20px;margin-bottom:20px;">
-						<span>
-							<a class="addToCart" href="#">Continue Shopping</a>
-							<div class="cartCheckoutBox">
-								<span style="display:block;margin-bottom:20px;">
-									<div style="width:120px;float:left;padding-right:9px;">
-										<p>Subtotal:</p>
-										<p>Tax:</p>
-										<p class="grandTotal">Grand Total:</p>
-									</div>
-									<div style="width:135px;float:left;margin-bottom:10px;">
-										<p>$1,999.00</p>
-										<p>$140.00</p>
-										<p class="grandTotal" >$2,139.00</p>
-									</div>
-								</span>
-								<a class="addToCart" href="#">Checkout</a>
-							</div>
-						</span>
-					</div>
-				</div>
+	{% endif %}
+	<div class="cartHeader" align="center">
+	<!-- cart products header -->
+		<span>Remove</span>
+		<span style="position:absolute;left:20%;">Product Title</span>
+		<span style="position:absolute;left:47%;">Unit Price</span>
+		<span style="position:absolute;left:58%;">Qty</span>
+		<span style="position:absolute;left:65%;">Subtotal</span>
+	</div>
+	{% for product in cart %}
+	<div>
+	<!-- in cart products -->
+		<div class="inCartProducts" style="dispaly:block">
+			<div style="width:7%;">
+			<a href="Cart/Remove/{{product.sku}}"> <img src="remove_product.jpg"> </img></a>
 			</div>
-			<div style="width:202px;float:left;height:100%;">
-				<div class="header">
-					Recently Viewed
-				</div>
-				<div align="center" id="recentProducts">
-					
-				</div>
-				<div align="center" style="margin-top:25px;">
-					<a href="#"><img src="scheduleservice.jpg"></img></a>
-					<a href="#"><img style="margin-top:25px;" src="catalog.jpg"></img></a>
-				</div>
-			</div> 
+			<div style="width:15%;margin-left:5px;margin-right:5px;">
+			{{product.name}}
+			</div>	
+			<div style="width:37%;margin-left:5px">
+			{{product.single_price}}
+			</div>	
+			<div style="width:14%;">
+			{{product.count}}
+			</div>	
+			<div style="width:10%;">
+			{{product.pretty_price}}
+			</div>	
+			<div style="width:14%;">
+			
+			</div>								
 		</div>
-		
 	</div>
-	
-</div>
-<div class="footer">
-	
+	{% endfor %}
+	<div style="margin-top:20px;margin-bottom:20px;">
+		<span>
+			<a class="addToCart" href="">Continue Shopping</a>
+			<div class="cartCheckoutBox">
+				<span style="display:block;margin-bottom:20px;">
+					<div style="width:120px;float:left;padding-right:9px;">
+						<p>Subtotal:</p>
+						<p>Tax:</p>
+						<p class="grandTotal">Grand Total:</p>
+					</div>
+					<div style="width:135px;float:left;margin-bottom:10px;">
+						<p>{{subtotal}}</p>
+						<p>{{tax_total}}</p>
+						<p class="grandTotal" >{{grand_total}}</p>
+					</div>
+				</span>
+				<a class="addToCart" href="/Cart/Checkout">Checkout</a>
+			</div>
+		</span>
+	</div>
 </div>
 
- 
-</body>
-</html>
+{% endblock %}
+
+

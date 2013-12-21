@@ -6,6 +6,7 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
 			<item value="C:\Users\Thomas\MedquipSite"/>
+			<item value="C:\Users\Thomas\MedquipSite\MedQuipSite"/>
 			<item value="C:\Users\Thomas\Dropbox\MedquipSite"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

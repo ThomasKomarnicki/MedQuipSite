@@ -1,0 +1,56 @@
+from django.shortcuts import render
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from Products.models import Product,Category
+import Products.view_data
+import json
+
+
+def product(request, product_sku):
+    try:
+        product = Product.objects.get(sku=product_sku)
+        add_product_to_recent(request,product)
+        category_links = Products.view_data.get_category_links(product=product)
+    except Product.DoesNotExist:
+        raise Http404
+    return render(request, 'product.html', {'product': product,'category_links':category_links})
+
+def category(request, category_id):
+    try:
+        category = Category.objects.filter(id=category_id).get()
+        category_links = Products.view_data.get_category_links(category=category)
+        categories = Products.view_data.get_categories(category_id)
+        if(not categories):
+            categories = Products.view_data.get_categories()
+        products = Products.view_data.get_products_in_category(category,categories=categories)
+        
+    except Category.DoesNotExist:
+        raise Http404
+    
+    
+    return render(request, 'category.html', {'category_links':category_links,'categories':categories,'products':products})
+
+def add_to_cart(request, product_sku, quanity = 1):
+    
+    print "IN ADD TO CART VIEW"
+    
+    
+    cart = None
+    if("cart" in request.session):
+        cart = json.loads(request.session['cart'])
+    else:
+        cart = []
+    cart.append({'sku':product_sku,'count':1})
+    request.session['cart'] = json.dumps(cart)
+    
+    
+    return HttpResponseRedirect('/Cart')
+
+def add_product_to_recent(request,product):
+    recent_products = None
+    if('recent' in request.session):
+        recent_products = json.loads(request.session['recent'])
+    else:
+        recent_products = []
+        
+    recent_products.append(product.sku)
+    request.session['recent'] = json.dumps(recent_products)

@@ -1,0 +1,15 @@
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'MedQuipSite.settings'
+
+import json
+from Products.models import Product, Category
+from bs4 import BeautifulSoup
+
+if __name__ == '__main__':
+    soup = BeautifulSoup(open('products_images.xml','r'))
+    rows = soup.findAll("row")
+    print rows[1]
+    
+    for row in rows:
+        sku_data = row.find("data")
+        print sku_data

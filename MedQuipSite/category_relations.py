@@ -10,13 +10,20 @@ if __name__ == '__main__':
     categories = Category.objects.all()
 
 
-for category in categories:
-    if(category.children_ids):
-        children_ids = json.loads(category.children_ids)
-        if(category.id in children_ids):
-            children_ids.remove(category.id)
-            category.children_ids = json.dumps(children_ids)
-            category.save()
+# file = open('categories_with_children.json','r')
+# list = json.loads(file.read())
+# 
+# for item in list:
+#     category = Category(id=item['id'],children_ids=item['children_ids'],parent_id=item['parent_id'],name=item['name'])
+#     category.save()
+
+# for category in categories:
+#     if(category.children_ids):
+#         children_ids = json.loads(category.children_ids)
+#         if(category.id in children_ids):
+#             children_ids.remove(category.id)
+#             category.children_ids = json.dumps(children_ids)
+#             category.save()
     
 # for category in categories:
 #     if(category.children_ids):

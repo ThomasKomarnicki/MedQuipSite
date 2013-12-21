@@ -47,8 +47,8 @@ def get_categories(category_id=None):
         if(category.children_ids):
 #             print "category has child categories"
             for id in json.loads(category.children_ids):
-                id = int(id)
-                id_list.append(id)
+                int_id = int(id)
+                id_list.append(int_id)
                 
             categories = Category.objects.filter(pk__in=id_list).iterator() #i think this works?
             for category in categories:
@@ -76,6 +76,24 @@ def get_products_in_category(category,categories=None):
 #     have single list of all products, need to make list of rows of products
     print "AFTER ACCUMULATING ALL PRODUCTS IN CATEGORIES"
     print len(all_products)
+#     product_list = []
+#     i = 0
+#     temp_list = []
+#     for product in all_products:
+#         if(i != 3):
+#             temp_list.append(product)
+#             i+=1
+#         else:
+#             product_list.append(temp_list)
+#             i = 0
+#             temp_list = []
+#             
+#     if(temp_list):
+#         product_list.append(temp_list)
+    
+    return get_products_in_rows_of_three(all_products)
+
+def get_products_in_rows_of_three(all_products):
     product_list = []
     i = 0
     temp_list = []
@@ -92,6 +110,7 @@ def get_products_in_category(category,categories=None):
         product_list.append(temp_list)
     
     return product_list
+    
     
     
 def add_products(category,all_products):
@@ -118,7 +137,42 @@ def get_home_products():
         products.append(product)
     
     return products
+
+def add_product_to_recent(request,product):
+    recent_products = None
+    if('recent' in request.session):
+        recent_products = json.loads(request.session['recent'])
+    else:
+        recent_products = []
+    
+    recent_products.append({'sku':product.sku,'name':product.name})
+    if(len(recent_products)> 5):
+        recent_products.pop()
+    request.session['recent'] = json.dumps(recent_products)
+    
+def get_recent_products(request):
+    if('recent' in request.session):
+        return json.loads(request.session['recent'])
+    else:
+        print "NO RECENT PRODUCTS"
+        return None;
       
-    
-    
+def get_cart_item_count(request):
+    if('cart' in request.session):
+        return len(json.loads(request.session['cart']))
+    else:
+        return 0    
+
+def is_logged_in(request):
+    return 'user' in request.session
+
+def get_nav_header_items(request):
+    return{'logged_in':is_logged_in(request),'cart_item_count':get_cart_item_count(request)}
+
+def get_2_plus_column_base_data(request):
+    return(dict(get_nav_header_items(request).items() + {'recent':get_recent_products(request)}.items()))
+
+def search(query):
+    products = Product.objects.filter(name__icontains=query).all()
+    return get_products_in_rows_of_three(products)
     
