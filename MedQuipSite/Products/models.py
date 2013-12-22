@@ -19,6 +19,7 @@ class Product(models.Model):
     short_description = models.CharField(max_length=200,null=True,blank=True)
     category_id = models.IntegerField()
     attribute_type = models.IntegerField()
+    weight = models.DecimalField(decimal_places = 2, max_digits = 10,blank=True,default=0.0)
     visible = models.BooleanField(default=True)
 #     0 = no attributes, 1 = simple attributes, 2= long attributes
     

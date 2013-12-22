@@ -1,0 +1,37 @@
+{% extends "content_right_column_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="header" style="">
+{{ product.name }}
+</div>
+	<span style="display:table;padding:15px;width:90%">
+		<img src="static/Products/images/{{product.img}}" style="width:260px;margin-top:40px;display:table-cell"></img>
+		<div class="productInfo" align="top" style="margin-left:auto;margin-right:auto;width:auto">
+			<p class="productTitle">{{ product.name }}</p>
+			<p style="display:none;">Out of Stock</p>
+			<p id="productPrice">${{ product.price }}</p>
+			<span>
+				Quanity: <input type="text" value="1" style="width:23px;padding-left:5px;"></input> 
+				<a class="addToCart"href="#" style="margin-left:10px;">Add to Cart</a>
+			</span>
+			
+			{% if product.attributes %}
+			<form style="margin-top:10px;"action="">
+				<select name="options">
+					{% for attribute in product.attributes %}
+						<option value="{{attribute.sku}}" selected> {{ attribute.title }}</option>
+					{%endfor %}
+				</select>
+			</form>
+			{% endif %}
+			
+		</div>
+	</span>
+	<div style="margin:10px">
+	{{product.short_description}}
+	</div>
+	<div style="margin:10px">
+	{{product.description}}
+	</div>
+{% endblock %}

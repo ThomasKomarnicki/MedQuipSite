@@ -1,0 +1,67 @@
+{% extends "content_right_column_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- product -->
+<div class="header" style="">
+Register
+</div>
+<div style="width:680px;margin:auto;margin-left:36px;">
+<!-- sign in-->
+	<div class="register" style="float:right;">
+		<form class="registerForm" action="Login" method="get">
+			{{login.email.errors}}
+			<label for="id_email">Email Address:</label>
+			{{login.email}}
+			{{login.password.errors}}
+			<label for="id_passowrd">Password:</label>
+			{{login.password}}
+			{% csrf_token %}
+			<input class="addToCart" style="width:25%" type="submit" value="Log in">
+		</form>
+		<a href="PasswordRecovery/"> Forgot Password? </a>
+	</div>
+	<div class="register" >
+		<form class="registerForm" action="" method="post">
+			<div>
+			{{register.first_name.errors}}
+			<label for="id_first_name">First Name:</label>
+			{{register.first_name}}
+			</div>
+			
+			<div>
+			{{register.last_name.errors}}
+			<label for="id_last_name">Last Name:</label>
+			{{register.last_name}}
+			</div>
+			
+			<div>
+			{{register.email.errors}}
+			<label for="id_email">Email Address:</label>
+			{{register.email}}
+			</div>
+			
+			<div>
+			{{register.orginization.errors}}
+			<label for="id_orginization">Orginization (Optional):</label>
+			{{register.orginization}}
+			</div>
+			
+			<div>
+			{{register.password.errors}}
+			<label for="id_password">Password:</label>
+			{{register.password}}
+			</div>
+			
+			<div>
+			{{register.confirm_password.errors}}
+			<label for="id_confirm_password">Confirm Password:</label>
+			{{register.confirm_password}}
+			</div>
+			{% csrf_token %}
+			<input type="submit" value="Register" style="text-align:center;width:25%;" class="greyButton">
+		</form>
+	</div>
+
+</div>
+{% endblock %}

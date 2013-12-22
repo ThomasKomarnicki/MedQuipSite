@@ -1,0 +1,36 @@
+{% extends "3_column_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="header" style="border:none;">
+	Search Results
+</div>
+{% if not products %}
+<div style="margin:30px">
+your search returned no results
+</div>
+{% else %}
+
+{% for productRow in products %}
+	<div class="productRow" style="display:table;margin-top:30px;margin-bottom:30px;margin:10px;height:auto;width:96%" >
+	{% for product in productRow %}
+		<span align="center" style="height:100%;border:none;">
+			<div class="productThumbnail" style="height:100%">
+				<a href="product/{{ product.sku }}"><img src="{{ product.sku }}.jpg"></a>
+				<div class="title" style="margin-bottom:10px;margin-top:10px;">
+					{{ product.title }}
+				</div>
+				<div class="price">
+					{{product.pretty_price}}
+				</div>
+				<div style="margin-top:25px">
+					<a class="addToCart" href="#" >Add To Cart</a>
+				</div>
+			</div>
+		</span>
+	{% endfor %}
+	</div>
+{% endfor %}
+
+{% endif %}
+{% endblock %}

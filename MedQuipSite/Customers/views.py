@@ -4,6 +4,8 @@ from Customers.models import Customer
 import hashlib
 import Products.view_data as view_data
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.mail import send_mail,EmailMultiAlternatives
+import django.template.loader as loader
 
 def register(request):
     if request.method == 'POST':
@@ -49,13 +51,25 @@ def recover_password(request):
         recoverForm = RecoverForm(request.POST)
         if recoverForm.is_valid():
             # TODO send email to recoverFrom.cleaned_data['email'] with link to reset password containing reset_id
-            HttpResponseRedirect('/PasswordReset')
+            email = recoverForm.cleaned_data['email']
+            customer = Customer.objects.filter(email=email).get()
+            customer.reset = hashlib.sha224(email).hexdigest()
+            customer.save()
+            
+            subject, from_email = 'Medicalquip.com Password Reset', 'no-reply@medicalquip.com'
+            text_content = 'This is an important message.'
+            html_content = loader.render_to_string("reset_password.html", {'customer':customer,})
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
+            msg.attach_alternative(html_content, "text/html")
+            msg.content_subtype = "text"
+            msg.send()
+            return HttpResponseRedirect('/RecoverPassword/PasswordReset/')
         else:
             return render(request,'recover_password.html',view_data.get_2_plus_column_base_data(request).items() + {'form':recoverForm}.items())
     
     else:
         recoverForm = RecoverForm()
-        return render(request,'recover_password.html',view_data.get_2_plus_column_base_data(request).items() + {'form':recoverForm}.items())
+        return render(request,'recover_password.html',dict(view_data.get_2_plus_column_base_data(request).items() + {'form':recoverForm}.items()))
     
 def password_reset(request):
     

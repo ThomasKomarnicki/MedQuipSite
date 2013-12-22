@@ -52,6 +52,7 @@ class RegisterForm(forms.Form):
     def clean_email(self):
         email = self.cleaned_data['email']
         print "REGISTER CLEAN EMAIL"
+        customer_found = False
         try:
             customer = Customer.objects.filter(email=email).get()
             print "found customer with email "+ str(customer.email)

@@ -1,0 +1,160 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'Products/mqStyle1.css' %}">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+ <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+ <link rel="stylesheet" href="{% static 'Products\jquery-ui-1.10.3.custom\css\mq_menu\jquery-ui-1.10.3.custom.css' %}">
+ <base href="http://127.0.0.1:8000/" target="_self">
+</head>
+<body>
+
+<div style="width:960px;margin:auto;">
+
+	<div id="header">
+		<img src="{% static 'Products/images/logo.jpg' %}" height="119" width="464">
+		
+		<div class="accountNav">
+			<span style="border-left:none">
+				{% if logged_in %}
+				<a class="AccountNavLink" href="SignOut/">Sign Out</a>
+				{% else %}
+				<a class="AccountNavLink" href="Register/">Login or Register</a>
+				{% endif %}
+			</span>
+			<span>
+				<a class="AccountNavLink" href="Cart/">
+				My Cart ({{ cart_item_count }})
+				</a>
+			</span>
+			<span>
+				<a class="AccountNavLink" href="Cart/Checkout/">Checkout</a>
+			</span>
+			{% if logged_in %}
+			<span>
+				<a class="AccountNavLink" href="myAccount/">My Account</a>
+			</span>
+			{% else %}
+			<span>
+				<a class="AccountNavLink" href="Register/">My Account</a>
+			</span>
+			{% endif %}
+		</div>
+	</div>
+	
+	
+	<div class="topMenu">
+		<span style="border-left:none">
+			<a class="topMenuButton" href="">Home</a>
+		</span>		
+		<span>
+			<form action="/Search/" method="get">
+				<input class="productSearchBox" type="text" name="product_query" placeholder="Product Search">
+				<input type="submit" value="Search"class="mqButton"></input>
+			</form>
+		</span>
+		<span>
+			<a class="topMenuButton" href="http://www.reddit.com">About Us</a>
+		</span>	
+		<span>
+			<a class="topMenuButton" href="http://www.reddit.com">Contact Us</a>
+		</span>			
+	</div>
+	
+	<div class="catagoryLinks" style="margin-bottom:10px;">
+		<span><a href="">Home</a>
+		{% if category_links %}
+			{% for category in category_links %}
+				/ <a href="Products/Category/{{category.id}}">{{category.name}}</a>
+			{% endfor %}
+		{% endif %}
+		</span>
+	</div>
+	
+	{% if not category_links %}
+		<!-- hide this -->
+		<script>
+		$('.catagoryLinks').css('display','none')
+		</script>
+	{% endif %}
+	
+	<!-- content -->
+	
+	<div id="container3">
+		<div id="container2">
+			<div id="innerDivBorder"style="height:100%;position:absolute;right:484px;"> </div>
+			<div id="container1">
+				<div id="col1">
+					<div class="header" style="border:none;">
+					Online Catalog	
+					</div>
+					<ul id="menu" style="z-index:9999;">
+					{% for category in categories %}
+					<li><a href="Products/Category/{{category.id}}">{{category.name}}</a>
+						{% if category.sub_categories %}
+							<ul>
+							{% for category1 in category.sub_categories %}
+							<li><a href="Products/Category/{{category1.id}}">{{category1.name}}</a>
+								{% if category1.sub_categories %}
+									<ul>
+									{% for category2 in category1.sub_categories %}
+									<li><a href="Products/Category/{{category2.id}}">{{category2.name}}</a></li>
+									{% endfor %}							
+									</ul>
+									</li>
+								{% else %}
+									</li>
+								{% endif %}
+							{% endfor %}
+							</ul>
+							</li>
+						{% else %}
+							</li>
+						{% endif %}
+					{% endfor %}
+					</ul>
+					
+					<script>
+					$( "#menu" ).menu();
+					</script>
+				</div>
+				<div id="col2" style="margin-left:10px;">
+					{% block content %}
+				
+					{% endblock content %}
+				</div>
+				<div id="col3">
+					{% if recent %}
+					<div class="header" style="border:none;">
+						Recently Viewed
+					</div>
+					<div align="center" id="recentProducts">
+						{% for product in recent%}
+						<div style="margin-top:5px;">
+							<a class="productLink"href="/Products/{{product.sku}}">{{product.name}}</a>
+						</div>
+						{% endfor %}
+					</div>
+					{% endif %}
+					<div align="center" style="margin-top:25px;">
+						<a href="#"><img src="{% static 'Products/images/scheduleservice.jpg' %}"></img></a>
+						<a href="#"><img style="margin-top:15px;" src="{% static 'Products/images/catalog.jpg' %}"></img></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="footer">
+	
+</div>
+
+
+
+ 
+</body>
+</html>

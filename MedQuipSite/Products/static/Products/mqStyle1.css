@@ -15,10 +15,11 @@ background-color:#FFFFFF;
 .accountNav{
 border-bottom-right-radius: 12px;
 border-bottom-left-radius: 12px;
+font-size:12px;
 display:table;
 background:#444444;
 float:right;
-width:326px;
+width:350px;
 height:41px;
 margin-right:20px;
 }
