@@ -8,17 +8,18 @@ Register
 </div>
 <div style="width:680px;margin:auto;margin-left:36px;">
 <!-- sign in-->
-	<div class="register" style="float:right;>
-		{{login.errors}}
-		<form class="registerForm" action="login" method="get">
+	<div class="register" style="float:right;">
+		<form class="registerForm" action="Login" method="get">
 			{{login.email.errors}}
 			<label for="id_email">Email Address:</label>
 			{{login.email}}
 			{{login.password.errors}}
 			<label for="id_passowrd">Password:</label>
 			{{login.password}}
+			{% csrf_token %}
 			<input class="addToCart" style="width:25%" type="submit" value="Log in">
 		</form>
+		<a href="PasswordRecovery/"> Forgot Password? </a>
 	</div>
 	<div class="register" >
 		<form class="registerForm" action="" method="post">

@@ -20,6 +20,7 @@ Products.view_data|C:\Users\Thomas\MedquipSite\MedQuipSite\Products\view_data.py
 Products.views|C:\Users\Thomas\MedquipSite\MedQuipSite\Products\views.py
 add_image_paths|C:\Users\Thomas\MedquipSite\MedQuipSite\add_image_paths.py
 category_relations|C:\Users\Thomas\MedquipSite\MedQuipSite\category_relations.py
+database_to_json|C:\Users\Thomas\MedquipSite\MedQuipSite\database_to_json.py
 load_products_script|C:\Users\Thomas\MedquipSite\MedQuipSite\load_products_script.py
 manage|C:\Users\Thomas\MedquipSite\MedQuipSite\manage.py
 merge_products|C:\Users\Thomas\MedquipSite\MedQuipSite\merge_products.py

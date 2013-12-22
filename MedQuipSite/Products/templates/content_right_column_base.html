@@ -19,7 +19,7 @@
 		<div class="accountNav">
 			<span style="border-left:none">
 				{% if logged_in %}
-				<a class="AccountNavLink" href="sign_out/">Sign Out</a>
+				<a class="AccountNavLink" href="SignOut/">Sign Out</a>
 				{% else %}
 				<a class="AccountNavLink" href="Register/">Login or Register</a>
 				{% endif %}
@@ -75,12 +75,12 @@
 	
 	<div class="contentHolder" style="height:auto;overflow:hidden;position:relative;" >
 		<div style="width:956px;float:left;height:100%;border:none;overflow:hidden;position:absolute;left:0px;">
-			<div style="width:752px;float:left;height:100%;border-left:none">
+			<div style="width:740px;float:left;height:100%;border-left:none">
 			{% block content %}
 		
 			{% endblock content %}
 			</div>
-			<div style="width:202px;float:left;height:100%;">
+			<div style="width:214px;float:left;height:100%;">
 				{% if recent %}
 				<div class="header" style="border:none;">
 					Recently Viewed

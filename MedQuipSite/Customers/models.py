@@ -21,6 +21,10 @@ class Customer(models.Model):
     orginization = models.CharField(max_length=200,blank=True)
     password = models.CharField(max_length=200)
     orders = models.CharField(max_length=1000,blank=True)
+#     reset = models.CharField(max_length=200,blank=True)
+#     reset_valid_through = models.CharField(max_length=200,blank=True)
+#     user_cookie = models.CharField(max_length=200,blank=True)
+    
     
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.first + ' '+ self.last

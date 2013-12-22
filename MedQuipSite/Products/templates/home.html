@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div id="container" style="width:960px;margin:auto">
+<div style="width:960px;margin:auto;">
 
 	<div id="header">
 		<img src="{% static 'Products/images/logo.jpg' %}" height="119" width="464">
@@ -19,7 +19,7 @@
 		<div class="accountNav">
 			<span style="border-left:none">
 				{% if logged_in %}
-				<a class="AccountNavLink" href="sign_out/">Sign Out</a>
+				<a class="AccountNavLink" href="SignOut/">Sign Out</a>
 				{% else %}
 				<a class="AccountNavLink" href="Register/">Login or Register</a>
 				{% endif %}
@@ -56,7 +56,7 @@
 	
 	<!-- content -->
 	
-	<div class="contentHolder" style="border-left:none;" >
+	<div class="contentHolder" style="height:950px" >
 		<div style="width:217px;float:left;height:auto;position:absolute;border:none;">
 			<div class="header" style="border:none;">
 			Online Catalog	
@@ -91,7 +91,7 @@
 			$( "#menu" ).menu();
 			</script>
 		</div>
-		<div style="width:741px;float:right;height:450px;border:none">
+		<div style="width:741px;float:right;height:600px;border:none">
 			<div style="width:535px;float:left;height:100%;">
 				<ul align="center" class="ppt">
 					<li id="mainImage1"><a href="http://www.reddit.com"><img src="{% static 'Products/images/main_image.jpg' %}" alt="Balance System SD" /></a></li>
@@ -128,7 +128,7 @@
 				</div>
 			</div> 
 		</div>
-		<div class="bottomProducts"style="float:right;display:table;width:739px;height:300px;" align="right">
+		<div class="bottomProducts"style="float:right;display:table;width:739px;height:350px;" align="right">
 		<!-- bottom products-->
 			<span align="center" style="height:100%;border:none;vertical-align:middle;">
 				<div class="productThumbnail" style="height:auto;vertical-align:middle;">

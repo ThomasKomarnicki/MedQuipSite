@@ -8,6 +8,25 @@ from django.core.exceptions import ObjectDoesNotExist
 
 if __name__ == '__main__':
     categories = Category.objects.all()
+    
+biodex = Category.objects.filter(id=98).get()
+children_ids = []
+for category in categories:
+    if category.parent_id == 98:
+        children_ids.append(category.id)
+
+c_ids = json.dumps(children_ids)
+print c_ids
+biodex.children_ids = c_ids
+biodex.save()
+
+#     for category in categories:
+#         children_ids = json.loads(category.children_ids)
+#         for id in children_ids:
+#             child_category = Category.objects.filter(id=id).get()
+#             child_category_children = json.loads(child_category.children_ids)
+#             if id in child_category_children
+
 
 
 # file = open('categories_with_children.json','r')

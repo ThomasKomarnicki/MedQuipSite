@@ -19,7 +19,7 @@
 		<div class="accountNav">
 			<span style="border-left:none">
 				{% if logged_in %}
-				<a class="AccountNavLink" href="sign_out/">Sign Out</a>
+				<a class="AccountNavLink" href="SignOut/">Sign Out</a>
 				{% else %}
 				<a class="AccountNavLink" href="Register/">Login or Register</a>
 				{% endif %}
@@ -111,7 +111,7 @@
 					$( "#menu" ).menu();
 					</script>
 				</div>
-				<div id="col2">
+				<div id="col2" style="margin-left:10px;">
 					{% block content %}
 				
 					{% endblock content %}

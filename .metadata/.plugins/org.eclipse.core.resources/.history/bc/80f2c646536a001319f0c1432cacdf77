@@ -1,0 +1,11 @@
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'MedQuipSite.settings'
+
+import json
+from Products.models import Product, Category
+from django.core.exceptions import ObjectDoesNotExist
+
+if __name__ == '__main__':
+    for category in Category.objects.all().values():
+        print category
+        

@@ -12,8 +12,6 @@ def get_category_links(product=None, category=None):
     if(product):
         category = Category.objects.filter(id=product.category_id).get()
     
-    print category.name
-        
     category_list = []
     category_list.append(category)
     add_parent_ids(category,category_list)
@@ -22,17 +20,14 @@ def get_category_links(product=None, category=None):
     
         
 def add_sub_category(category):
-#     print "adding sub category for " + str(category)
     if(category.children_ids):
         category.sub_categories = []
         for id in json.loads(category.children_ids):
-#             print "category "+str(category) + "has child category id "+str(id)
             sub_id = int(id)
             sub_category1 = Category.objects.filter(id=sub_id).get()
             category.sub_categories.append(sub_category1)
             
         if(hasattr(category,'sub_categories')):
-    #         print str(category) + " has attribute - sub_categories"
             for sub_category in category.sub_categories:
                 add_sub_category(sub_category)
     else:
@@ -42,10 +37,8 @@ def get_categories(category_id=None):
     category_tree = []
     if(category_id):
         category = Category.objects.all().filter(id=category_id).get()
-#         print "getting categories for " + str(category)
         id_list = []
         if(category.children_ids):
-#             print "category has child categories"
             for id in json.loads(category.children_ids):
                 int_id = int(id)
                 id_list.append(int_id)
@@ -57,12 +50,10 @@ def get_categories(category_id=None):
         categories = Category.objects.all()
         for category in categories:
             if( not category.parent_id):
-#                 print category
                 category_tree.append(category)
     
     category_tree.sort(key=lambda x: x.name, reverse=False)  
     for category in category_tree:
-#         print "calling add sub category from main func"
         add_sub_category(category)
     
     return category_tree
@@ -73,23 +64,6 @@ def get_products_in_category(category,categories=None):
         categories = get_categories(category_id=category.id)
     all_products = []
     add_products(category,all_products)
-#     have single list of all products, need to make list of rows of products
-    print "AFTER ACCUMULATING ALL PRODUCTS IN CATEGORIES"
-    print len(all_products)
-#     product_list = []
-#     i = 0
-#     temp_list = []
-#     for product in all_products:
-#         if(i != 3):
-#             temp_list.append(product)
-#             i+=1
-#         else:
-#             product_list.append(temp_list)
-#             i = 0
-#             temp_list = []
-#             
-#     if(temp_list):
-#         product_list.append(temp_list)
     
     return get_products_in_rows_of_three(all_products)
 
@@ -117,7 +91,6 @@ def add_products(category,all_products):
     try:
         products_in_category = Product.objects.filter(category_id=category.id).all()
     except:
-        print "getting products failed for " + str(category)
         return
         
     for product in products_in_category:
@@ -145,7 +118,13 @@ def add_product_to_recent(request,product):
     else:
         recent_products = []
     
-    recent_products.append({'sku':product.sku,'name':product.name})
+    already_in = False
+    for product1 in recent_products:
+        if product1['sku'] == product.sku:
+            already_in = True
+    if not already_in:
+        recent_products.append({'sku':product.sku,'name':product.name})
+        
     if(len(recent_products)> 5):
         recent_products.pop()
     request.session['recent'] = json.dumps(recent_products)
@@ -154,7 +133,6 @@ def get_recent_products(request):
     if('recent' in request.session):
         return json.loads(request.session['recent'])
     else:
-        print "NO RECENT PRODUCTS"
         return None;
       
 def get_cart_item_count(request):

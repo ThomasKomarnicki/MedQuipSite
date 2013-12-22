@@ -6,13 +6,13 @@
 	Search Results
 </div>
 {% if not products %}
-<div>
+<div style="margin:30px">
 your search returned no results
 </div>
 {% else %}
 
 {% for productRow in products %}
-	<div class="productRow" style="display:table;height:300px;" >
+	<div class="productRow" style="display:table;margin-top:30px;margin-bottom:30px;margin:10px;height:auto;width:96%" >
 	{% for product in productRow %}
 		<span align="center" style="height:100%;border:none;">
 			<div class="productThumbnail" style="height:100%">
@@ -21,7 +21,7 @@ your search returned no results
 					{{ product.title }}
 				</div>
 				<div class="price">
-					${{product.price}}
+					{{product.pretty_price}}
 				</div>
 				<div style="margin-top:25px">
 					<a class="addToCart" href="#" >Add To Cart</a>

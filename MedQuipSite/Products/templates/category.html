@@ -9,9 +9,9 @@
 	{% for product in productRow %}
 		<span align="left" style="height:100%;border:none;vertical-align:middle;">
 			<div class="productThumbnail" style="height:100%">
-				<a href="Products/{{ product.sku }}"><img style="max-width:80%;max-height:80%"src="static/Products/images/{{ product.img }}"></a>
+				<a href="Products/{{ product.sku }}/"><img style="max-width:80%;max-height:80%"src="static/Products/images/{{ product.img }}"></a>
 				<div class="title" style="margin-bottom:10px;margin-top:10px;">
-					<a class="productLink"href="/Products/{{product.sku}}">{{product.name}}</a>
+					<a class="productLink"href="/Products/{{product.sku}}/">{{product.name}}</a>
 				</div>
 				<div class="price">
 					${{product.price}}

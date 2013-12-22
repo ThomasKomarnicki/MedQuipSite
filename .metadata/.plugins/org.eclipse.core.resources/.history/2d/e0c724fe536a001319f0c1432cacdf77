@@ -1,0 +1,20 @@
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'MedQuipSite.settings'
+
+import json
+from Products.models import Product, Category, Attribute
+from Customers.models import Customer, Order
+from django.core.exceptions import ObjectDoesNotExist
+
+if __name__ == '__main__':
+    categories = []
+    products = []
+    customers = []
+    orders = []
+    attributes = []
+    for category in Category.objects.all().values():
+        categories.append(category)
+        
+    for product in Product.objects.all().values():
+        products.append(product)
+        
