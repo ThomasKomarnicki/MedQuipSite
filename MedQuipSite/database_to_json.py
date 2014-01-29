@@ -20,6 +20,7 @@ if __name__ == '__main__':
         products.append(product)
         
     for object in Attribute.objects.all().values():
+        object['price'] = str(object['price'])
         attributes.append(object)
         
     for object in Customer.objects.all().values():

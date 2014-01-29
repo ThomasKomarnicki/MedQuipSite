@@ -8,24 +8,29 @@
 	<span style="display:table;padding:15px;width:90%">
 		<img src="static/Products/images/{{product.img}}" style="width:260px;margin-top:40px;display:table-cell"></img>
 		<div class="productInfo" align="top" style="margin-left:auto;margin-right:auto;width:auto">
+			
 			<p class="productTitle">{{ product.name }}</p>
 			<p style="display:none;">Out of Stock</p>
 			<p id="productPrice">${{ product.price }}</p>
 			<span>
-				Quanity: <input type="text" value="1" style="width:23px;padding-left:5px;"></input> 
-				<a class="addToCart"href="#" style="margin-left:10px;">Add to Cart</a>
+				<form action="/Products/Add/{{attribute_sku}}/" method="get">
+					Quanity: <input name="quantity"type="text" value="1" style="width:23px;padding-left:5px;">
+					<input class="addToCart" style="width:25%;min-width:100px;" type="submit" value="Add To Cart">
+				</form>
 			</span>
 			
-			{% if product.attributes %}
-			<form style="margin-top:10px;"action="">
-				<select name="options">
-					{% for attribute in product.attributes %}
-						<option value="{{attribute.sku}}" selected> {{ attribute.title }}</option>
-					{%endfor %}
-				</select>
-			</form>
-			{% endif %}
-			
+			{% if attributes %}
+			<form action="" method="get" >
+				<div>
+					{{ product.attribute_options}}
+					<select name="attribute_sku" style="margin-top:10px;" onchange="this.form.submit()" >
+						{% for attribute in attributes %}
+							<option value="{{attribute.sku}}" {% if attribute_sku == attribute.sku %}  selected="selected"{% endif %}> {{ attribute.description }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				{% endif %}
+			</form>	
 		</div>
 	</span>
 	<div style="margin:10px">

@@ -114,3 +114,39 @@ class LoginForm(forms.Form):
             raise ValidationError(self.fields['password'].error_messages['incorrect_password'])
         
         return password
+    
+    
+    
+class BillingForm(forms.Form):
+    first_name = forms.CharField(label="First Name")
+    last_name = forms.CharField(label="Last Name")
+    company = forms.CharField(required=False)
+    email = forms.EmailField(label="Email Address")
+    address = forms.CharField(label="Address")
+    address_line2 = forms.CharField(required=False,label="")
+    city = forms.CharField(label="City")
+    state = forms.ChoiceField(label="State/Province")
+    non_us_state = forms.CharField(label="State/Province")
+    zip = forms.CharField(label="Zip Code")
+    country = forms.ChoiceField(label="Country")
+    telephone = forms.CharField(label="Telephone")
+    fax = forms.CharField(label="Fax")
+    
+class ShippingForm(BillingForm):
+    pass
+    
+    
+class CreditCardForm(forms.Form):
+    name = forms.CharField(label="Name on Card")
+    number = forms.CharField(label="Number")
+    cvc = forms.CharField(label="CVC",min_length=3)
+    date_month = forms.DateField(label="Exp Date",widget=forms.DateInput,input_formats=['%m'])
+    date_year = forms.DateField(label="",widget=forms.DateInput,input_formats=['%y'])
+    
+    
+    
+    
+    
+    
+    
+    

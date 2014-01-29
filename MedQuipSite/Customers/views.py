@@ -6,6 +6,7 @@ import Products.view_data as view_data
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail,EmailMultiAlternatives
 import django.template.loader as loader
+import string,random
 
 def register(request):
     if request.method == 'POST':
@@ -47,21 +48,24 @@ def sign_out(request):
     return render(request,'signed_out.html',view_data.get_2_plus_column_base_data(request))
 
 def recover_password(request):
+    print "RECOVER_PASSWORD"
     if request.method == 'POST':
         recoverForm = RecoverForm(request.POST)
         if recoverForm.is_valid():
             # TODO send email to recoverFrom.cleaned_data['email'] with link to reset password containing reset_id
             email = recoverForm.cleaned_data['email']
             customer = Customer.objects.filter(email=email).get()
-            customer.reset = hashlib.sha224(email).hexdigest()
+            lst = [random.choice(string.ascii_letters + string.digits) for n in xrange(30)]
+            
+            customer.reset = "".join(lst)
             customer.save()
             
             subject, from_email = 'Medicalquip.com Password Reset', 'no-reply@medicalquip.com'
             text_content = 'This is an important message.'
             html_content = loader.render_to_string("reset_password.html", {'customer':customer,})
+            text_content = html_content
             msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
             msg.attach_alternative(html_content, "text/html")
-            msg.content_subtype = "text"
             msg.send()
             return HttpResponseRedirect('/RecoverPassword/PasswordReset/')
         else:
@@ -72,23 +76,38 @@ def recover_password(request):
         return render(request,'recover_password.html',dict(view_data.get_2_plus_column_base_data(request).items() + {'form':recoverForm}.items()))
     
 def password_reset(request):
+    print "PASSWORD_RESET"
     
     return render(request,'password_reset.html',view_data.get_2_plus_column_base_data(request))
 
 def make_new_password(request):
+    print "MAKE NEW PASSWORD"
     if request.method == 'POST':
         passwordForm = PasswordForm(request.POST)
         if passwordForm.is_valid():
             
             # find email from reset_id and change that customer's password
             password = hashlib.sha224(passwordForm.cleaned_data['password']).hexdigest()
-            HttpResponseRedirect('/PasswordChanged')
+            url_reset_param = request.GET.get('reset',"reset get not found")
+            print url_reset_param
+            customer = None
+            try:
+                customer = Customer.objects.filter(reset=url_reset_param).get()
+            except:
+                print "Customer"
+                pass
+            if(customer):
+                customer.password = password
+                customer.reset = ""
+                customer.save()
+            print "ABOUT TO REDIRECT"
+            return HttpResponseRedirect('/ChangePassword/PasswordChanged/')
         else:
-            return render(request,'make_new_password.html',view_data.get_2_plus_column_base_data(request).items() + {'form':passwordForm}.items())
+            return render(request,'make_new_password.html',dict(view_data.get_2_plus_column_base_data(request).items() + {'form':passwordForm}.items()))
     
     else:
         passwordForm = PasswordForm()
-        return render(request,'make_new_password.html',view_data.get_2_plus_column_base_data(request).items() + {'form':passwordForm}.items())
+        return render(request,'make_new_password.html',dict(view_data.get_2_plus_column_base_data(request).items() + {'form':passwordForm}.items()))
     
 def password_changed(request):
     

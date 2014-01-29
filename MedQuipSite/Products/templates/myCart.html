@@ -18,31 +18,31 @@ My Cart
 	<div class="cartHeader" align="center">
 	<!-- cart products header -->
 		<span>Remove</span>
-		<span style="position:absolute;left:20%;">Product Title</span>
+		<span style="position:absolute;left:20%;">Product Name</span>
 		<span style="position:absolute;left:47%;">Unit Price</span>
 		<span style="position:absolute;left:58%;">Qty</span>
 		<span style="position:absolute;left:65%;">Subtotal</span>
 	</div>
 	{% for product in cart %}
-	<div>
+	<div style="margin-top:5px;">
 	<!-- in cart products -->
 		<div class="inCartProducts" style="dispaly:block">
-			<div style="width:7%;">
-			<a href="Cart/Remove/{{product.sku}}"> <img src="remove_product.jpg"> </img></a>
+			<div style="width:15%;margin-left:30px;">
+				<a href="Cart/Remove/{{product.sku}}"> <img src="remove_product.jpg"> </img></a>
 			</div>
-			<div style="width:15%;margin-left:5px;margin-right:5px;">
-			{{product.name}}
+			<div style="width:37%;margin-left:25px;margin-right:5px;">
+			<a class="productLink"href="/Products/{{product.sku}}/">{{product.name}}</a>
 			</div>	
-			<div style="width:37%;margin-left:5px">
+			<div style="width:16%;margin-left:5px">
 			{{product.single_price}}
 			</div>	
-			<div style="width:14%;">
+			<div style="width:9%;margin-left:5px;">
 			{{product.count}}
 			</div>	
 			<div style="width:10%;">
 			{{product.pretty_price}}
 			</div>	
-			<div style="width:14%;">
+			<div style="width:1%;">
 			
 			</div>								
 		</div>
@@ -59,9 +59,9 @@ My Cart
 						<p class="grandTotal">Grand Total:</p>
 					</div>
 					<div style="width:135px;float:left;margin-bottom:10px;">
-						<p>{{subtotal}}</p>
-						<p>{{tax_total}}</p>
-						<p class="grandTotal" >{{grand_total}}</p>
+						<p>${{subtotal}}</p>
+						<p>${{tax_total}}</p>
+						<p class="grandTotal" >${{grand_total}}</p>
 					</div>
 				</span>
 				<a class="addToCart" href="/Cart/Checkout">Checkout</a>

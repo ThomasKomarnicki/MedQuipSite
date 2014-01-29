@@ -11,6 +11,20 @@ if __name__ == '__main__':
 
 j = json.loads(file.read())
 
+
+
+products = Product.objects.all()
+for product in products:
+    product.delete()
+    
+attributes = Attribute.objects.all()
+for attribute in attributes:
+    attribute.delete()
+    
+categories = Category.objects.all()
+for category in categories:
+    category.delete()
+
 objects = j['categories']
 for object in objects:
     db_object = Category()
@@ -21,6 +35,7 @@ objects = j['products']
 for object in objects:
     db_object = Product()
     db_object.__dict__.update(object)
+    db_object.name = db_object.name.encode("ascii","ignore")
     db_object.save()
     
 objects = j['attributes']

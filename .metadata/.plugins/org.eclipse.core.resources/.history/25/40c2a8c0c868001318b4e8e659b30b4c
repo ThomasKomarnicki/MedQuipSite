@@ -1,9 +1,0 @@
-import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'MedQuipSite.settings'
-
-import json
-from Products.models import Product, Category
-from bs4 import BeautifulSoup
-
-if __name__ == '__main__':
-    soup = BeautifulSoup(open('product_images.xml',w))

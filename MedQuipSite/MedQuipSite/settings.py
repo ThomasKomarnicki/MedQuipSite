@@ -1,13 +1,3 @@
-"""
-Django settings for MedQuipSite project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -30,7 +20,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -93,12 +82,16 @@ EMAIL_HOST_PASSWORD = 'no-reply'
 
 STATIC_URL = '/static/'
 
+GRAPPELLI_INDEX_DASHBOARD = 'MedQuipSite.dashboard.CustomIndexDashboard'
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.request",
-    'django.contrib.auth.context_processors.auth'
+    "django.core.context_processors.i18n",
+    'django.contrib.messages.context_processors.messages',
 )

@@ -16,15 +16,15 @@ your search returned no results
 	{% for product in productRow %}
 		<span align="center" style="height:100%;border:none;">
 			<div class="productThumbnail" style="height:100%">
-				<a href="product/{{ product.sku }}"><img src="{{ product.sku }}.jpg"></a>
+				<a href="Products/{{ product.sku }}"><img src="{{ product.sku }}.jpg"></a>
 				<div class="title" style="margin-bottom:10px;margin-top:10px;">
-					{{ product.title }}
+					<a class="productLink"href="/Products/{{product.sku}}/">{{product.name}}</a>
 				</div>
 				<div class="price">
 					{{product.pretty_price}}
 				</div>
 				<div style="margin-top:25px">
-					<a class="addToCart" href="#" >Add To Cart</a>
+					<a class="addToCart" href="/Products/Add/{{product.sku}}/" >Add To Cart</a>
 				</div>
 			</div>
 		</span>

@@ -506,4 +506,30 @@ margin-top:10px;
 margin-bottom:5px;
 }
 
+div.address_block{
+width:45%;
+margin-left:5px;
+margin-right:5px;
+border-color:#444444;
+border-width:2px;
+}
+
+div.address_block span{
+margin:5px;
+display:block;
+}
+
+div.address_block span input{
+margin-right:5px;
+width:95%;
+}
+
+div.address_div input{
+width:95%;
+}
+
+div.input_holder input{
+width:95%;
+}
+
 

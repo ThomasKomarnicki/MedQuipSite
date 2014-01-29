@@ -1,7 +1,6 @@
 from Products.models import Product, Category, Attribute
 import json
 
-
 def add_parent_ids(category,category_list):
     if(category.parent_id):
         parent_category = Category.objects.filter(id=category.parent_id).get()
@@ -20,32 +19,33 @@ def get_category_links(product=None, category=None):
     
         
 def add_sub_category(category):
-    if(category.children_ids):
+    
+    try:
+        sub_categories = Category.objects.filter(parent_id=category.id).all()
         category.sub_categories = []
-        for id in json.loads(category.children_ids):
-            sub_id = int(id)
-            sub_category1 = Category.objects.filter(id=sub_id).get()
-            category.sub_categories.append(sub_category1)
-            
-        if(hasattr(category,'sub_categories')):
-            for sub_category in category.sub_categories:
+        for category1 in sub_categories:
+            category.sub_categories.append(category1)
+        for sub_category in category.sub_categories:
                 add_sub_category(sub_category)
-    else:
+            
+    except:
         category.sub_categories = None
+
+def get_sub_categories(category):
+    try:
+        sub_categories = Category.objects.filter(parent_id=category.id)
+        return sub_categories
+    except:
+        return None
 
 def get_categories(category_id=None):
     category_tree = []
     if(category_id):
         category = Category.objects.all().filter(id=category_id).get()
-        id_list = []
-        if(category.children_ids):
-            for id in json.loads(category.children_ids):
-                int_id = int(id)
-                id_list.append(int_id)
-                
-            categories = Category.objects.filter(pk__in=id_list).iterator() #i think this works?
-            for category in categories:
-                category_tree.append(category)
+        sub_categories = get_sub_categories(category)
+        if(sub_categories):
+            for sub_category in sub_categories:
+                category_tree.append(sub_category)
     else:
         categories = Category.objects.all()
         for category in categories:
@@ -95,13 +95,11 @@ def add_products(category,all_products):
         
     for product in products_in_category:
         all_products.append(product)
-    children_ids = category.children_ids
-    if(children_ids):
-        children_ids = json.loads(children_ids)
-        for id in children_ids:
-            add_products(Category.objects.filter(id=int(id)).get(),all_products)
-    
- 
+        
+    sub_categories = get_sub_categories(category)
+    for sub_category in sub_categories:
+        add_products(sub_category,all_products)    
+        
 def get_home_products():
     products = []
     temp = Product.objects.all()[:4]
@@ -152,5 +150,4 @@ def get_2_plus_column_base_data(request):
 
 def search(query):
     products = Product.objects.filter(name__icontains=query).all()
-    return get_products_in_rows_of_three(products)
-    
+    return get_products_in_rows_of_three(products)    

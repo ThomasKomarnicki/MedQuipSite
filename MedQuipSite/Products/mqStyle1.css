@@ -15,10 +15,11 @@ background-color:#FFFFFF;
 .accountNav{
 border-bottom-right-radius: 12px;
 border-bottom-left-radius: 12px;
+font-size:12px;
 display:table;
 background:#444444;
 float:right;
-width:326px;
+width:350px;
 height:41px;
 margin-right:20px;
 }
@@ -162,7 +163,9 @@ border-style:solid;
 ul.ppt {
 	position: relative;
 	display:block;
-	height:340px;
+	height:400px;
+	margin-top:40px;
+	margin-bottom:40px;
 }
 
 .ppt li {
@@ -208,7 +211,8 @@ border:none;
 }
 
 .ui-menu {
-	width: 200px;
+	width: auto;
+	min-width: 200px;
 }
 
 .header{
@@ -363,10 +367,12 @@ height:100%;
 
 div.register{
 margin:auto;
-width:400px;
+width:312px;
 border: 2px solid;
 border-color:#444444;
 margin-top:50px;
+float:left;
+padding:10px;
 }
 
 div.register input,
@@ -489,8 +495,33 @@ border-bottom:none;
     float:left;
     width: 21%;
     position:relative;
-    left:68%;
+    left:67%;
     overflow:hidden;
+}
+
+form.registerForm label{
+display:block;
+margin:auto;
+margin-top:10px;
+margin-bottom:5px;
+}
+
+div.address_block{
+width:45%;
+margin-left:10px;
+margin-right:10px;
+border-color:#444444;
+border-width:2px;
+}
+
+div.address_block span{
+margin:5px;
+}
+
+div.address_block span input{
+margin-left:5px;
+margin-right:5px;
+width:45%;
 }
 
 

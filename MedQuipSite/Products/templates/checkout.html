@@ -1,0 +1,278 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+<div class="contentHolder" style="height:auto;overflow:hidden;position:relative;" >
+<form class="order" action="SubmitOrder" method="post">
+<div class="header" style="">
+Checkout
+</div>
+<div style="width:100%;">
+	<div id="billing_block" class="address_block" >
+		<div class="header" style="">
+		Billing Information
+		</div>
+		<span >
+			<div style="float:left;width:46%">
+				<label for="id_first_name">First Name:</label> <br>
+				{{billing_form.first_name}}
+				{{billing_form.first_name.errors}}
+			</div>
+			
+			<div style="float:left;width:46%;margin-left:15px;">
+				<label for="id_last_name">Last Name:</label><br>
+				{{billing_form.last_name}}
+				{{billing_form.last_name.errors}} 
+			</div>
+		</span>
+	
+		<span>
+			<div style="float:left;width:46%">
+				<label for="id_first_name">Company:</label> <br>
+				{{billing_form.company}}
+				{{billing_form.company.errors}}
+			</div>
+			
+			<div style="float:left;width:46%;margin-left:15px;">
+				<label for="id_last_name">Email:</label> <br>
+				{{billing_form.email}}
+				{{billing_form.email.errors}}
+			</div>
+		</span>
+
+		<div class="address_div">
+			<label for="id_adress" class="address_line">Address:</label><br>
+			{{billing_form.address}}
+			{{billing_form.address.errors}}
+		</div>
+
+		<div class="address_div">
+			<label for="id_adress_line2" class="address_line"></label><br>
+			{{billing_form.address_line2}}
+			{{billing_form.address_line2.errors}}
+		</div>
+
+		<span>
+			<div style="float:left;width:47">
+				<label for="id_first_name">City:</label> <br>
+				{{billing_form.city}}
+				{{billing_form.city.errors}}
+			</div>
+			
+			<div class="input_holder"style="float:left;width:46%;margin-left:15px;">
+				<label for="id_last_name">State/Province:</label><br>
+				{{billing_form.state}}
+				{{billing_form.state.errors}}
+			</div>
+		</span>
+
+		<span>
+			<div style="float:left;width:46%">
+				<label for="id_first_name">Zip/Postal Code:</label> <br>
+				{{billing_form.zip}}
+				{{billing_form.zip.errors}}
+			</div>
+			
+			<div style="float:left;width:46%;margin-left:15px;">
+				<label for="id_last_name">Country:</label><br>
+				{{billing_form.country}}
+				{{billing_form.country.errors}}
+			</div>
+		</span>
+
+		<span>
+			<div style="float:left;width:46%">
+				<label for="id_first_name">Telephone:</label> <br>
+				{{billing_form.telephone}}
+				{{billing_form.telephone.errors}}
+			</div>
+			
+			<div style="float:left;width:46%;margin-left:15px;">
+				<label for="id_last_name">Fax:</label><br>
+				{{billing_form.fax}}
+				{{billing_form.fax.errors}}
+			</div>
+		</span>
+
+		<div>
+		<input type="radio" name="shipping_address" value="billing" checked>Use Billing Address<br>
+		<input type="radio" name="shipping_address" value="new_shipping">Ship to Different Address
+		</div>
+	</div>
+	
+	<div id="shipping_block" class="address_block" style="float:right;">
+	
+		<div class="header" style="">
+		Shipping Information
+		</div>
+			<div>
+				<span>
+					<label for="id_first_name">First Name:</label>
+					{{shipping_form.first_name}}
+					{{shipping_form.first_name.errors}}
+					
+					<label for="id_last_name">Last Name:</label>
+					{{shipping_form.last_name}}
+					{{shipping_form.last_name.errors}}
+				</span>
+			</div>
+			
+			<div>
+				<span>
+					<label for="id_company">Company:</label>
+					{{shipping_form.company}}
+					{{shipping_form.company.errors}}
+					
+					<label for="id_email">Email Address:</label>
+					{{shipping_form.email}}
+					{{shipping_form.email.errors}}
+				</span>
+			</div>
+
+			<div>
+				<label for="id_adress" class="address_line">Address:</label>
+				{{shipping_form.address}}
+				{{shipping_form.address.errors}}
+			</div>
+
+			<div>
+				<label for="id_adress_line2" class="address_line"></label>
+				{{shipping_form.address_line2}}
+				{{shipping_form.address_line2.errors}}
+			</div>
+
+			<div>
+				<span>
+					<label for="id_city">City:</label>
+					{{shipping_form.city}}
+					{{shipping_form.city.errors}}
+					
+					<label for="id_state">State/Province:</label>
+					{{shipping_form.state}}
+					{{shipping_form.state.errors}}
+				</span>
+			</div>
+
+			<div>
+				<span>
+					<label for="id_zip">Zip/Postal Code:</label>
+					{{shipping_form.zip}}
+					{{shipping_form.zip.errors}}
+					
+					<label for="id_country">Country:</label>
+					{{shipping_form.country}}
+					{{shipping_form.country.errors}}
+				</span>
+			</div>
+
+			<div>
+				<span>
+					<label for="id_city">Telephone:</label>
+					{{shipping_form.telephone}}
+					{{shipping_form.telephone.errors}}
+					
+					<label for="id_state">Country:</label>
+					{{shipping_form.fax}}
+					{{shipping_form.fax.errors}}
+				</span>
+			</div>
+		
+			<script>
+			$().ready(function() {
+
+
+				$('#shipping_block').click(function() {
+					$('#shipping_block > span > input').each(function() {
+						if ($(this).attr('disabled')) {
+							$(this).removeAttr('disabled');
+						}
+						else {
+							$(this).attr({
+								'disabled': 'disabled'
+							});
+						}
+					});
+				});
+			});
+			</script>
+	</div>
+	</div>
+	
+	<div style="width:96%">
+		<div class="header" style="">
+		Payment Information 
+		</div>
+		
+		<div>
+		Payment Method:<br>
+		<input type="radio" name="payment_method" value="credit_card" checked>Pay with Credit Card<br>
+		<input type="radio" name="payment_method" value="money_order">Pay with Money Order
+		
+		<div id="cc_form">
+			<div>
+				<label for="id_name">Name on Card:</label>
+				{{cc_form.name}}
+				{{cc_form.name.errors}}
+			</div>
+			
+			<div>
+				<label for="id_number">Card Number:</label>
+				{{cc_form.number}}
+				{{cc_form.number.errors}}
+			</div>
+			
+			<span> 
+				<div>
+					<label for="id_number">Exp Date:</label>
+					{{cc_form.date_month}}
+					{{cc_form.date_month.errors}}
+				</div>
+				<div>
+					{{cc_form.date_year}}
+					{{cc_form.date_year.errors}}
+				</div>
+				<div>
+					<label for="id_number">CVC:</label>
+					{{cc_form.dvc}}
+					{{cc_form.cvd.errors}}
+				</div>
+			</span>
+			
+			<script>
+			$().ready(function() {
+
+
+				$('#cc_form').click(function() {
+					if($(this).val() == "credit_card"){
+						$(this).css("display","block");
+					}else{
+						$(this).css("display","none");
+					}
+				
+				
+					$('#shipping_block > span > input').each(function() {
+						if ($(this).attr('disabled')) {
+							$(this).removeAttr('disabled');
+						}
+						else {
+							$(this).attr({
+								'disabled': 'disabled'
+							});
+						}
+					});
+				});
+			});
+			</script>
+		</div>
+		
+		</div>
+	</div>
+
+</div>
+{% csrf_token %}
+</form>
+</div>
+
+
+{% endblock %}
+

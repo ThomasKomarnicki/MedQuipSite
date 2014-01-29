@@ -1,8 +1,0 @@
-import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'MedQuipSite.settings'
-
-from Products.models import Product,Category,Attribute
-from Customers.models import Customer, Order
-
-if __name__ == '__main__':
-    pass
