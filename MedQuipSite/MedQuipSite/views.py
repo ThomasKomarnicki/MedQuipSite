@@ -30,24 +30,6 @@ def my_cart(request):
         
     return render(request, 'myCart.html', dict(view_data.get_2_plus_column_base_data(request).items() + {'cart':shopping_cart,'subtotal':subtotal,'tax_total':tax_total,'grand_total':grand_total}.items()))
 
-def checkout(request):
-    
-    billing_form = None
-    shipping_form = None
-    cc_form = None
-    
-    if request.method == 'POST':
-        billing_form = BillingForm(request.POST)
-        shipping_form = ShippingForm(request.POST)
-        cc_form = CreditCardForm(request.POST)
-    else:
-        billing_form = BillingForm()
-        shipping_form = ShippingForm()
-        cc_form = CreditCardForm()
-    
-            
-    return render(request, 'checkout.html', dict(view_data.get_2_plus_column_base_data(request).items() + {'billing_form':billing_form,"shipping_form":shipping_form,"cc_form":cc_form}.items()))
-
 def contact_us(request):
     
     

@@ -1,19 +1,5 @@
 from django.db import models
 
-# Create your models here.
-    
-class Order(models.Model):
-    item_skus = models.CharField(max_length=200)
-    item_count = models.CharField(max_length=200)
-    item_price = models.CharField(max_length=200)
-    item_discount = models.CharField(max_length=200)
-    tax_total = models.DecimalField(decimal_places = 2,max_digits=10)
-    shipping = models.DecimalField(decimal_places = 2,max_digits=10)
-    shipped_to = models.CharField(max_length=200)
-    
-    def __unicode__(self):  # Python 3: def __str__(self):
-        return self.id
-    
 class Customer(models.Model):
     first = models.CharField(max_length=200)
     last = models.CharField(max_length=200)
@@ -26,9 +12,26 @@ class Customer(models.Model):
     user_cookie = models.CharField(max_length=200,blank=True)
     customer_code = models.CharField(max_length=200,blank=True)
     
-    
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.first + ' '+ self.last
+    
+    
+    
+    
+class Order(models.Model):
+    item_skus = models.CharField(max_length=200)
+    item_count = models.CharField(max_length=200)
+    item_price = models.CharField(max_length=200)
+    item_discount = models.CharField(max_length=200)
+    tax_total = models.DecimalField(decimal_places = 2,max_digits=10)
+    shipping = models.DecimalField(decimal_places = 2,max_digits=10)
+    shipped_to = models.CharField(max_length=200)
+    customer = models.ForeignKey(Customer)
+    
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return self.id
+    
+    
     
 class CustomerCode(models.Model):
     code = models.CharField(max_length=200)

@@ -1,5 +1,11 @@
 MODULES_MANAGER_V2
 2014_products|C:\Users\Thomas\MedquipSite\MedQuipSite\2014_products.py
+Checkout.__init__|C:\Users\Thomas\MedquipSite\MedQuipSite\Checkout\__init__.py
+Checkout.admin|C:\Users\Thomas\MedquipSite\MedQuipSite\Checkout\admin.py
+Checkout.models|C:\Users\Thomas\MedquipSite\MedQuipSite\Checkout\models.py
+Checkout.tests|C:\Users\Thomas\MedquipSite\MedQuipSite\Checkout\tests.py
+Checkout.urls|C:\Users\Thomas\MedquipSite\MedQuipSite\Checkout\urls.py
+Checkout.views|C:\Users\Thomas\MedquipSite\MedQuipSite\Checkout\views.py
 Customers.__init__|C:\Users\Thomas\MedquipSite\MedQuipSite\Customers\__init__.py
 Customers.admin|C:\Users\Thomas\MedquipSite\MedQuipSite\Customers\admin.py
 Customers.migrations.0001_initial|C:\Users\Thomas\MedquipSite\MedQuipSite\Customers\migrations\0001_initial.py
@@ -11,6 +17,7 @@ Customers.urls|C:\Users\Thomas\MedquipSite\MedQuipSite\Customers\urls.py
 Customers.views|C:\Users\Thomas\MedquipSite\MedQuipSite\Customers\views.py
 MedQuipSite.__init__|C:\Users\Thomas\MedquipSite\MedQuipSite\MedQuipSite\__init__.py
 MedQuipSite.forms|C:\Users\Thomas\MedquipSite\MedQuipSite\MedQuipSite\forms.py
+MedQuipSite.selectors_data|C:\Users\Thomas\MedquipSite\MedQuipSite\MedQuipSite\selectors_data.py
 MedQuipSite.settings|C:\Users\Thomas\MedquipSite\MedQuipSite\MedQuipSite\settings.py
 MedQuipSite.urls|C:\Users\Thomas\MedquipSite\MedQuipSite\MedQuipSite\urls.py
 MedQuipSite.views|C:\Users\Thomas\MedquipSite\MedQuipSite\MedQuipSite\views.py
@@ -41,4 +48,5 @@ merge_products|C:\Users\Thomas\MedquipSite\MedQuipSite\merge_products.py
 move_products_to_new_category|C:\Users\Thomas\MedquipSite\MedQuipSite\move_products_to_new_category.py
 remove_copy_of_attribute_products|C:\Users\Thomas\MedquipSite\MedQuipSite\remove_copy_of_attribute_products.py
 replace_valid_2014_products|C:\Users\Thomas\MedquipSite\MedQuipSite\replace_valid_2014_products.py
+try_to_find_image_for_imageless_products|C:\Users\Thomas\MedquipSite\MedQuipSite\try_to_find_image_for_imageless_products.py
 update_db_from_json|C:\Users\Thomas\MedquipSite\MedQuipSite\update_db_from_json.py

@@ -2,6 +2,8 @@ from django import forms
 from Customers.models import Customer
 from django.core.exceptions import ValidationError
 import hashlib
+import selectors_data
+from datetime import date
 
 class ContactForm(forms.Form):
     subject = forms.CharField()
@@ -117,7 +119,7 @@ class LoginForm(forms.Form):
     
     
     
-class BillingForm(forms.Form):
+class ShippingForm(forms.Form):
     first_name = forms.CharField(label="First Name")
     last_name = forms.CharField(label="Last Name")
     company = forms.CharField(required=False)
@@ -125,26 +127,53 @@ class BillingForm(forms.Form):
     address = forms.CharField(label="Address")
     address_line2 = forms.CharField(required=False,label="")
     city = forms.CharField(label="City")
-    state = forms.ChoiceField(label="State/Province")
+    state = forms.ChoiceField(label="State/Province",choices=selectors_data.get_states_as_selector_data())
     non_us_state = forms.CharField(label="State/Province")
     zip = forms.CharField(label="Zip Code")
-    country = forms.ChoiceField(label="Country")
+    country = forms.ChoiceField(label="Country",choices=selectors_data.get_countries_as_selector_data())
     telephone = forms.CharField(label="Telephone")
     fax = forms.CharField(label="Fax")
     
-class ShippingForm(BillingForm):
-    pass
+    def __init__(self, *args, **kwargs):
+        super(ShippingForm, self).__init__(*args, **kwargs)
+        self.fields['state'].initial = 'Florida'
+        self.fields['country'].initial = 'United States'
+    
+class BillingForm(ShippingForm):
+    same = forms.BooleanField(widget=forms.CheckboxInput(attrs={"id":"same_as_billing"}))
     
     
 class CreditCardForm(forms.Form):
     name = forms.CharField(label="Name on Card")
-    number = forms.CharField(label="Number")
-    cvc = forms.CharField(label="CVC",min_length=3)
-    date_month = forms.DateField(label="Exp Date",widget=forms.DateInput,input_formats=['%m'])
-    date_year = forms.DateField(label="",widget=forms.DateInput,input_formats=['%y'])
+    number = forms.CharField(label="Number",error_messages = {'not_selected': 'Please enter a valid Credit Card Number'})
+    cvc = forms.CharField(label="CVC",min_length=3,widget=forms.TextInput(attrs={'maxlength':'4'}))
+    date_month = forms.DateField(label="Exp Date",widget=forms.DateInput(attrs={'maxlength':'2'}),input_formats=['%m'])
+    date_year = forms.DateField(required=False,label="",widget=forms.DateInput(attrs={'maxlength':'2'}),input_formats=['%y'])
+    type = forms.ChoiceField(choices = selectors_data.get_cc_types(),error_messages={'not_selected': 'Please select a credit card type'}) 
+    
+    def clean_type(self):
+        type = self.cleaned_data['type']
+        if type == "None":
+            raise ValidationError(self.fields['type'].error_messages['not_selected'])
+        return type
+        
+    def clean_number(self):
+        number = self.cleaned_data['number']
+        if not luhn(number):
+            raise ValidationError(self.fields['number'].error_messages['invalid_number'])
+        return number
+        
+    def clean_date_month(self):
+        month = self.cleaned_data['date_month']
+        year = self.cleaned_data['year']
+        today_year = date.today().year
+        today_month = date.today().month
     
     
-    
+def luhn(n):
+    r = [int(ch) for ch in str(n)][::-1]
+    return (sum(r[0::2]) + sum(sum(divmod(d*2,10)) for d in r[1::2])) % 10 == 0
+  
     
     
     

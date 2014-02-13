@@ -3,36 +3,36 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="228" key="DIALOG_Y_ORIGIN"/>
-		<item value="1099" key="DIALOG_X_ORIGIN"/>
 		<item value="381" key="DIALOG_HEIGHT"/>
+		<item value="1099" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="true" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="input" key="selection"/>
+		<item value="item" key="selection"/>
 		<list key="findhistory">
+			<item value="country"/>
+			<item value="code"/>
+			<item value="name"/>
 			<item value="input"/>
 			<item value="label"/>
 			<item value="encode"/>
 			<item value="RecoverForm"/>
 			<item value="recoverForm"/>
-			<item value="print"/>
-			<item value="pk"/>
-			<item value=" input"/>
 		</list>
 		<list key="replacehistory">
+			<item value="item"/>
+			<item value="&quot;code&quot;"/>
+			<item value="&quot;name&quot;"/>
 			<item value="lable"/>
 			<item value="decode"/>
 			<item value="PasswordForm"/>
 			<item value="passwordForm"/>
 			<item value=" raw_input"/>
-			<item value="vertex_map"/>
-			<item value="edges_to_vertex"/>
-			<item value="edges_from_vertex"/>
 		</list>
 	</section>
 </section>

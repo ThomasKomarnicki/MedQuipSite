@@ -2,13 +2,13 @@
 {% load staticfiles %}
 
 {% block main_content %}
-<div class="contentHolder" style="height:auto;overflow:hidden;position:relative;" >
+<div class="checkout_contentHolder" style="height:auto;overflow:hidden;position:relative;" >
 <form class="order" action="SubmitOrder" method="post">
 <div class="header" style="">
 Checkout
 </div>
 <div style="width:100%;">
-	<div id="billing_block" class="address_block" >
+	<div id="billing_block" class="address_block" style="" >
 		<div class="header" style="">
 		Billing Information
 		</div>
@@ -53,7 +53,7 @@ Checkout
 		</div>
 
 		<span>
-			<div style="float:left;width:47">
+			<div style="float:left;width:47%">
 				<label for="id_first_name">City:</label> <br>
 				{{billing_form.city}}
 				{{billing_form.city.errors}}
@@ -95,12 +95,12 @@ Checkout
 		</span>
 
 		<div>
-		<input type="radio" name="shipping_address" value="billing" checked>Use Billing Address<br>
-		<input type="radio" name="shipping_address" value="new_shipping">Ship to Different Address
-		</div>
+			<input type="radio" name="shipping_address" value="billing" checked>Use Billing Address<br>
+			<input type="radio" name="shipping_address" value="new_shipping">Ship to Different Address
+		</div> 
 	</div>
 	
-	<div id="shipping_block" class="address_block" style="float:right;">
+	<div id="shipping_block" class="address_block">
 	
 		<div class="header" style="">
 		Shipping Information
@@ -196,9 +196,8 @@ Checkout
 			});
 			</script>
 	</div>
-	</div>
 	
-	<div style="width:96%">
+	<div style="width:96%" >
 		<div class="header" style="">
 		Payment Information 
 		</div>
