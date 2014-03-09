@@ -29,9 +29,19 @@ def register(request):
         return render(request,'register.html',dict(view_data.get_2_plus_column_base_data(request).items()+{'login':loginForm,'register':registerForm}.items()))
 
 def login(request):
+    #check for redirect cookie and on successful login take them to the value URL
+    # TODO
+    redirect = None
+    try:
+        redirect = request.get_signed_cookie("redirect",salt="dog")
+    except:
+        pass
+    
     form = LoginForm(request.GET)
     if form.is_valid():
         request.session['user'] = form.cleaned_data['email']
+        if(redirect):
+            return HttpResponseRedirect(redirect)
         return HttpResponseRedirect('/')
     else:   
         registerForm = RegisterForm()

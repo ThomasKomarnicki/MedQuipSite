@@ -17,8 +17,8 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name','sku']
     view_on_site = True
     fields = ('name','sku','price','description','short_description','weight','visible')
-    inlines = [AttributeInline]
-    actions = [hide]
+    inlines = [AttributeInline,]
+    actions = ['hide']
     
     def get_search_results(self, request, queryset, search_term):
         

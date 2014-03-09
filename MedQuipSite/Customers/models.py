@@ -18,6 +18,8 @@ class Customer(models.Model):
     
     
     
+    
+    
 class Order(models.Model):
     item_skus = models.CharField(max_length=200)
     item_count = models.CharField(max_length=200)

@@ -1,4 +1,5 @@
 from django.db import models
+from Customers.models import Customer
 
 class Checkout(models.Model):
     payment_type = models.CharField(max_length=200)
@@ -7,15 +8,15 @@ class Checkout(models.Model):
 
     def __init__(self,cleaned_billing,cleaned_shipping = None,cleaned_cc=None):
         super.__init__(self)
-        billing_address = Address(cleaned_billing,self,type="billing")
+        billing_address = Address(cleaned_billing,checkout = self,type="billing")
         if cleaned_shipping:
-            shipping_address = Address(cleaned_shipping,self,type="shipping")
+            shipping_address = Address(cleaned_shipping,checkout = self,type="shipping")
         else:
-            shipping_address = Address(cleaned_billing,self,type="shipping")
+            shipping_address = Address(cleaned_billing,checkout = self,type="shipping")
         
         if(cleaned_cc):
             self.payment_type = "Credit Card"
-            cc_data = CreditCard(cleaned_cc,self)
+            cc_data = CreditCard(cleaned_cc,checkout = self)
         else:
             self.payment_type = "Money Order"
             
@@ -27,7 +28,9 @@ class Checkout(models.Model):
              
         
 class Address(models.Model):
+
     type = models.CharField(max_length=200)
+    customer = models.ForeignKey(Customer)
     checkout = models.ForeignKey(Checkout)
     first = models.CharField(max_length=200)
     last = models.CharField(max_length=200)
@@ -42,10 +45,9 @@ class Address(models.Model):
     phone = models.CharField(max_length=200)
     fax = models.CharField(max_length=200,blank=True)
     
-    def __init__(self,cleaned_address,checkout,type = "billing"):
+    def __init__(self,cleaned_address,checkout = None,type1 = "billing", customer = None):
         super.__init__()
-        self.type = type
-        self.checkout = checkout
+        self.type = type1
         self.first = cleaned_address['first_name']
         self.last = cleaned_address['last_name']
         self.email = cleaned_address['email']
@@ -58,9 +60,17 @@ class Address(models.Model):
         self.zip = cleaned_address['zip']
         self.phone = cleaned_address['telephone']
         self.fax = cleaned_address['fax']
+
+        if(checkout):
+            self.checkout = checkout
+        if customer:
+            self.customer = customer
+            
+    
     
 
-class CreditCard(models.Model): 
+class CreditCard(models.Model):
+    customer = models.ForeignKey(Customer)
     checkout = models.ForeignKey(Checkout)
     name = models.CharField(max_length=200)
     number = models.CharField(max_length=200)
@@ -68,9 +78,12 @@ class CreditCard(models.Model):
     exp_date = models.CharField(max_length=200)
     cvc = models.CharField(max_length=200)
     
-    def __init__(self,cleaned_cc,checkout):
+    def __init__(self,cleaned_cc,checkout = None, customer = None):
         super.__init__()
-        self.checkout = checkout
+        if checkout:
+            self.checkout = checkout
+        if customer:
+            self.customer = customer
         self.name = cleaned_cc['name']
         self.number = cleaned_cc['number']
         self.type = cleaned_cc['type']

@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% load static from staticfiles  %}
+
+{% block main_content %}
+	
+<div id="container3">
+	<div id="container2">
+		<div id="innerDivBorder"style="height:100%;position:absolute;right:484px;"> </div>
+		<div id="container1">
+			<div id="col1">
+				<div class="header" style="border:none;">
+				My Account	
+				</div>
+				<ul id="menu" style="z-index:9999;">
+					<li><a href="myAccount/Orders">Orders</a>
+
+					</li>
+					<li><a href="myAccount/Profile">User Profile</a>
+
+					</li>
+					<li><a href="Cart/">Shopping Cart</a>
+
+					</li>					
+				</ul>
+				
+				<script>
+				$( "#menu" ).menu();
+				</script>
+			</div>
+			<div id="col2" style="margin-left:10px;">
+				{% block content %}
+			
+				{% endblock content %}
+			</div>
+			<!--<div id="col3">
+				{% if recent %}
+				<div class="header" style="border:none;">
+					Recently Viewed
+				</div>
+				<div align="center" id="recentProducts">
+					{% for product in recent%}
+					<div style="margin-top:5px;">
+						<a class="productLink"href="/Products/{{product.sku}}">{{product.name}}</a>
+					</div>
+					{% endfor %}
+				</div>
+				{% endif %}
+				<div align="center" style="margin-top:25px;">
+					<a href="#"><img src="{% static 'Products/images/scheduleservice.jpg' %}"></img></a>
+					<a href="#"><img style="margin-top:15px;" src="{% static 'Products/images/catalog.jpg' %}"></img></a>
+				</div>
+			</div>-->
+		</div>
+	</div>
+</div>
+
+{% endblock main_content %}

@@ -6,6 +6,11 @@ import Products.view_data as view_data
 
 def checkout(request):
     
+    if not view_data.is_logged_in(request):
+        response = HttpResponseRedirect("/Login/")
+        response.set_signed_cookie("redirect", "/Cart/Checkout/", salt="dog")
+        return response
+        
     billing_form = None
     shipping_form = None
     cc_form = None
