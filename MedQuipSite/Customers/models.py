@@ -1,4 +1,5 @@
 from django.db import models
+from Checkout.models import Address, CreditCard
 
 class Customer(models.Model):
     first = models.CharField(max_length=200)
@@ -15,9 +16,25 @@ class Customer(models.Model):
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.first + ' '+ self.last
     
-    
-    
-    
+    def get_addresses(self):
+        try:
+            addresses = [Address.objects.filter(customer=self).all()]
+            list = []
+            for address in addresses:
+                list.append({address})
+            return list
+        except:
+            return None
+            
+    def get_credit_cards(self):
+        try:
+            credit_cards = CrediCard.objects.filter(customer=self).all()
+            list = []
+            for cc in credit_cards:
+                list.append({cc})
+            return list
+        except:
+            return None
     
     
 class Order(models.Model):
