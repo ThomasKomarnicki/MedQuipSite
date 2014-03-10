@@ -15,6 +15,10 @@ def checkout(request):
     shipping_form = None
     cc_form = None
     
+    customer = view_data.get_customer();
+    customer_data = {'addresses':customer.get_addresses(), 'credit_cards':customer.get_credit_cards()}
+    
+    
     if request.method == 'POST':
         billing_form = BillingForm(request.POST)
         shipping_form = ShippingForm(request.POST)
