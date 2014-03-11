@@ -34,6 +34,7 @@ def login(request):
     redirect = None
     try:
         redirect = request.get_signed_cookie("redirect",salt="dog")
+        del request.COOKIES['redirect']
     except:
         pass
     

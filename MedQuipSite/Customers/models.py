@@ -28,7 +28,7 @@ class Customer(models.Model):
             
     def get_credit_cards(self):
         try:
-            credit_cards = CrediCard.objects.filter(customer=self).all()
+            credit_cards = CreditCard.objects.filter(customer=self).all()
             list = []
             for cc in credit_cards:
                 list.append({cc})

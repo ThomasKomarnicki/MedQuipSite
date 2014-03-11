@@ -17,6 +17,19 @@
 			
 			<div class="address_row">
 				<div >
+					<label for="id_first_name">Choose a Pevious Address</label> <br>
+					<select name="saved_billing_address">
+						{% for address in addresses %}
+						<option value="{{address.id}}"> {{address.address1}}</option>
+						{% endfor %}
+					</select>
+					
+				</div>
+				
+			</div>
+			
+			<div class="address_row">
+				<div >
 					<label for="id_first_name">First Name: <b>*</b></label> <br>
 					{{billing_form.first_name}}
 					{{billing_form.first_name.errors}}
@@ -92,6 +105,19 @@
 			<div class="header">
 			Shipping Information
 			</div>
+			
+			<div class="address_row">
+				<div >
+					<label for="id_first_name">Choose a Pevious Address</label> <br>
+					<select name="saved_shipping_address">
+						{% for address in addresses %}
+						<option value="{{address.id}}"> {{address.address1}}</option>
+						{% endfor %}
+					</select>
+					
+				</div>
+				
+			</div>
 			<div class="address_row">
 				<div >
 					<label for="id_first_name">First Name: <b>*</b></label> <br>
@@ -134,8 +160,7 @@
 			
 			<div class="address_row">
 				<div >
-					<label for="id_first_name">City: <b>*</b></label> <br>
-					{{billing_form.city}}
+					<label for="id_first_name">City: <b>*</b></label> <br>buu
 					{{billing_form.city.errors}}
 				</div>
 				
@@ -240,6 +265,60 @@ $(document).ready(function() {
 		}else{
 			$('#cc_form').css("display","none");
 		}
+	});
+	
+	$('select[name=saved_billing_addresses], select[name=saved_shipping_addresses]').change(function(){
+		var addresses = {{addresses|safe}};
+		var value = this.value;
+		var class_name;
+		if(this.name == 'saved_billing_addresses'){
+			class_name = 'billing_shipping_container';
+		}
+		else{
+			class_name = 'address_shipping_container'
+		}
+
+		
+		for(var i = 0; i < addresses.length; i++){
+			var address = addresses[i];
+			if(value == address['id']){
+				//set input fields
+				$('.'+class_name +' :input, '+'.'+class_name + ' :select').each(function(index,element){
+					var element_name = $(this).name();
+					if(element_name.indexOf('first_name') > -1){
+						$(this).val(address['first']);
+					}
+					else if(element_name.indexOf('last_name') > -1){
+						$(this).val(address['last']);
+					}
+					else if(element_name.indexOf('company') > -1){
+						$(this).val(address['orginization']);
+					}
+					else if(element_name.indexOf('email') > -1){
+						$(this).val(address['email']);
+					}
+					else if(element_name.indexOf('address_line2') > -1){
+						$(this).val(address['address2']);
+					}
+					else if(element_name.indexOf('address') > -1){
+						$(this).val(address['address1']);
+					}
+					else if(element_name.indexOf('city') > -1){
+						$(this).val(address['city']);
+					}
+					else if(element_name.indexOf('state') > -1){
+						$(this).val(address['state']);
+					}
+					else if(element_name.indexOf('zip') > -1){
+						$(this).val(address['zip']);
+					}
+					else if(element_name.indexOf('country') > -1){
+						$(this).val(address['country']);
+					}
+				});
+			}
+		}
+	
 	});
 	
 	

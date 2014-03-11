@@ -342,6 +342,7 @@ curses.has_key|C:\Python27\lib\curses\has_key.py
 curses.panel|C:\Python27\lib\curses\panel.py
 curses.textpad|C:\Python27\lib\curses\textpad.py
 curses.wrapper|C:\Python27\lib\curses\wrapper.py
+datetime
 dbhash|C:\Python27\lib\dbhash.py
 decimal|C:\Python27\lib\decimal.py
 difflib|C:\Python27\lib\difflib.py

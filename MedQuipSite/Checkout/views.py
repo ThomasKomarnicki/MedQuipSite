@@ -1,8 +1,10 @@
 from models import Address,Checkout,CreditCard
+from Customers.models import Customer
 from MedQuipSite.forms import BillingForm,ContactForm,ShippingForm,CreditCardForm
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 import Products.view_data as view_data
+import json
 
 def checkout(request):
     
@@ -15,8 +17,8 @@ def checkout(request):
     shipping_form = None
     cc_form = None
     
-    customer = view_data.get_customer();
-    customer_data = {'addresses':customer.get_addresses(), 'credit_cards':customer.get_credit_cards()}
+    customer = Customer.objects.filter(email=request.session['user']['email']).get()
+    customer_data = {'addresses':json.dumps(customer.get_addresses()), 'credit_cards':json.dumps(customer.get_credit_cards())}
     
     
     if request.method == 'POST':
@@ -46,7 +48,7 @@ def checkout(request):
         cc_form = CreditCardForm()
     
             
-    return render(request, 'checkout2.html', dict(view_data.get_2_plus_column_base_data(request).items() + {'billing_form':billing_form,"shipping_form":shipping_form,"cc_form":cc_form}.items()))
+    return render(request, 'checkout2.html', dict(customer_data.items()+view_data.get_2_plus_column_base_data(request).items()+{'billing_form':billing_form,"shipping_form":shipping_form,"cc_form":cc_form}.items()))
 
 def paying_with_cc(request):
     return request.POST['payment_method'] == "Credit Card"
