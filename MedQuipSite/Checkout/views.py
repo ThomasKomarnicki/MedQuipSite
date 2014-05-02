@@ -1,9 +1,9 @@
-from models import Address,Checkout,CreditCard
+from models import Address,Checkout,CreditCard,get_addresses,get_credit_cards
 from Customers.models import Customer
 from MedQuipSite.forms import BillingForm,ContactForm,ShippingForm,CreditCardForm
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-import Products.view_data as view_data
+import Products.view_data as view_data 
 import json
 
 def checkout(request):
@@ -17,9 +17,11 @@ def checkout(request):
     shipping_form = None
     cc_form = None
     
-    customer = Customer.objects.filter(email=request.session['user']['email']).get()
-    customer_data = {'addresses':json.dumps(customer.get_addresses()), 'credit_cards':json.dumps(customer.get_credit_cards())}
+    #print "checkout customer user = " + request.session['user']
+    customer = Customer.objects.filter(email=request.session['user']).get()
+    customer_data = {'addresses':json.dumps(get_addresses(customer)), 'credit_cards':json.dumps(get_credit_cards(customer))}
     
+    #print customer_data['addresses']
     
     if request.method == 'POST':
         billing_form = BillingForm(request.POST)
@@ -47,8 +49,9 @@ def checkout(request):
         shipping_form = ShippingForm()
         cc_form = CreditCardForm()
     
-            
-    return render(request, 'checkout2.html', dict(customer_data.items()+view_data.get_2_plus_column_base_data(request).items()+{'billing_form':billing_form,"shipping_form":shipping_form,"cc_form":cc_form}.items()))
+    dictionary = dict(customer_data.items()+view_data.get_2_plus_column_base_data(request).items()+{'billing_form':billing_form,"shipping_form":shipping_form,"cc_form":cc_form}.items())        
+    #print dictionary
+    return render(request, 'checkout2.html', dictionary)
 
 def paying_with_cc(request):
     return request.POST['payment_method'] == "Credit Card"

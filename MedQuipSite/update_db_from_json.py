@@ -44,14 +44,14 @@ for object in objects:
     db_object.__dict__.update(object)
     db_object.save()
     
-objects = j['customers']
-for object in objects:
-    db_object = Customer()
-    db_object.__dict__.update(object)
-    db_object.save()
-    
-objects = j['orders']
-for object in objects:
-    db_object = Category()
-    db_object.__dict__.update(object)
-    db_object.save()
+# objects = j['customers']
+# for object in objects:
+#     db_object = Customer()
+#     db_object.__dict__.update(object)
+#     db_object.save()
+#     
+# objects = j['orders']
+# for object in objects:
+#     db_object = Category()
+#     db_object.__dict__.update(object)
+#     db_object.save()

@@ -3,6 +3,7 @@
 
 {% block main_content %}
 
+
 <div class="main_content_holder">
 <form class="order" action="" method="post">
 	<div class="header" style="">
@@ -19,9 +20,11 @@
 				<div >
 					<label for="id_first_name">Choose a Pevious Address</label> <br>
 					<select name="saved_billing_address">
-						{% for address in addresses %}
-						<option value="{{address.id}}"> {{address.address1}}</option>
-						{% endfor %}
+						{% if addresses %}
+							{% for address in addresses %}
+							<option value="{{address.id}}"> {{address.address1}}</option>
+							{% endfor %}
+						{% endif %}
 					</select>
 					
 				</div>
@@ -110,9 +113,11 @@
 				<div >
 					<label for="id_first_name">Choose a Pevious Address</label> <br>
 					<select name="saved_shipping_address">
-						{% for address in addresses %}
-						<option value="{{address.id}}"> {{address.address1}}</option>
-						{% endfor %}
+						{% if addresses %}
+							{% for address in addresses %}
+							<option value="{{address.id}}"> {{address.address1}}</option>
+							{% endfor %}
+						{% endif %}
 					</select>
 					
 				</div>
@@ -160,7 +165,8 @@
 			
 			<div class="address_row">
 				<div >
-					<label for="id_first_name">City: <b>*</b></label> <br>buu
+					<label for="id_first_name">City: <b>*</b></label> <br>
+					{{billing_form.city}}
 					{{billing_form.city.errors}}
 				</div>
 				
@@ -191,7 +197,7 @@
 	
 	</div>
 	
-	<div class="payment_container">
+	<div class="payment_container"style="min-height:200px">
 		<div class="header" style="">
 		Payment Information 
 		</div>

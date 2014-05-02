@@ -34,10 +34,13 @@ def login(request):
     redirect = None
     try:
         redirect = request.get_signed_cookie("redirect",salt="dog")
-        del request.COOKIES['redirect']
+        request.delete_cookie('redirect')
+        #del request.COOKIES['redirect']
     except:
         pass
     
+    if 'redirect' in request.COOKIES: 
+        print "redirect cookie not deleted"
     form = LoginForm(request.GET)
     if form.is_valid():
         request.session['user'] = form.cleaned_data['email']

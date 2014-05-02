@@ -1,10 +1,1 @@
-INSTUPCheckout.views
-C:\Users\Thomas\MedquipSite\MedQuipSite\Checkout\views.py
-INFOS:&&2|1|2|0&&2|3|2|0&&2|4|2|0&&2|5|2|0&&2|6|2|0&&2|7|2|0
-paying_with_cc=3
-shipping_to_billing_address=4
-checkout_shipping=7
-Checkout.views=2
-billing_forms_are_valid=5
-checkout=1
-submit_billing=6
+DELSTRupdate_db_from_json

@@ -23,11 +23,11 @@ if __name__ == '__main__':
         object['price'] = str(object['price'])
         attributes.append(object)
         
-    for object in Customer.objects.all().values():
-        customers.append(object)
-        
-    for object in Order.objects.all().values():
-        orders.append(object)
+#     for object in Customer.objects.all().values():
+#         customers.append(object)
+#         
+#     for object in Order.objects.all().values():
+#         orders.append(object)
         
         
 open("database_json.json",'w').write(json.dumps({'categories':categories,'products':products,'customers':customers,'orders':orders,'attributes':attributes}))
