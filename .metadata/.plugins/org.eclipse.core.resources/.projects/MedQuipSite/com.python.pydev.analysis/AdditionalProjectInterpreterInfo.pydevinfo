@@ -13,7 +13,7 @@ database_to_json|0|C:\Users\Thomas\MedquipSite\MedQuipSite\database_to_json.py
 -- END DISKCACHE
 -- START DICTIONARY
 46
-37=PasswordForm
+36=PasswordForm
 25=CartItem
 27=ShippingForm
 40=CustomerCode
@@ -25,7 +25,7 @@ database_to_json|0|C:\Users\Thomas\MedquipSite\MedQuipSite\database_to_json.py
 17=Customers.models
 22=CreditCard
 15=category_fixer
-36=RegisterForm
+37=RegisterForm
 8=update_db_from_json
 21=MedQuipSite.urls
 34=CreditCard.__init__
@@ -74,7 +74,7 @@ bul|0|
 c|1|c!115@
 c_i|1|c_ids!107@
 car|1|CartItem!73@
-cat|12|category!26@categories!107@Category!73@category_stack!115@category_id!115@category_parent!123@categories!67@category_name!123@category_name!115@categories!59@category!123@categories_json!115@
+cat|12|categories!107@category!26@Category!73@category_stack!115@category_id!115@category_parent!123@categories!67@category_name!115@category_name!123@categories!59@category!123@categories_json!115@
 che|3|checkout_shipping!90@checkout!90@Checkout!33@
 chi|1|children_ids!107@
 con|2|ContactForm!97@contact_us!10@
@@ -85,7 +85,7 @@ dat|1|DATABASES!43@
 db_|1|db_object!67@
 deb|1|DEBUG!43@
 des|2|destination_parent!123@description!115@
-ema|5|EMAIL_USE_TLS!43@EMAIL_PORT!43@EMAIL_HOST!43@EMAIL_HOST_PASSWORD!43@EMAIL_HOST_USER!43@
+ema|5|EMAIL_USE_TLS!43@EMAIL_HOST!43@EMAIL_PORT!43@EMAIL_HOST_PASSWORD!43@EMAIL_HOST_USER!43@
 fil|1|file!67@
 fin|0|
 get|16|get_states_as_selector_data!130@get_cc_types!130@get_products_in_rows_of_three!18@get_choice_list!130@get_category_links!18@get_nav_header_items!18@get_credit_cards!34@get_countries_as_selector_data!130@get_sub_categories!18@get_products_in_category!18@get_categories!18@get_cart_item_count!18@get_addresses!34@get_recent_products!18@get_home_products!18@get_2_plus_column_base_data!18@
@@ -132,13 +132,13 @@ sig|1|sign_out!146@
 sim|0|
 sku|1|sku!115@
 sou|0|
-sta|3|state_list!131@STATIC_URL!43@STATICFILES_FINDERS!43@
+sta|3|STATICFILES_FINDERS!43@STATIC_URL!43@state_list!131@
 sub|1|submit_billing!90@
 tem|2|TEMPLATE_DEBUG!43@TEMPLATE_CONTEXT_PROCESSORS!43@
 tim|1|TIME_ZONE!43@
 upd|1|update_cart!26@
 url|3|urlpatterns!155@urlpatterns!163@urlpatterns!171@
-use|3|USE_TZ!43@USE_L10N!43@USE_I18N!43@
+use|3|USE_TZ!43@USE_I18N!43@USE_L10N!43@
 val|0|
 wei|0|
 wsg|1|WSGI_APPLICATION!43@
@@ -154,7 +154,7 @@ bac|0|
 cat|1|category_id!30&75@
 che|4|checkout!34&35@checkout!22&35@checkout!33&35@checkout!23&35@
 cit|3|city!27&99@city!33&35@city!23&35@
-cle|11|clean_type!35&98@clean_confirm_password!36&98@clean_confirm_password!37&98@clean_password!38&98@clean_password!36&98@clean_password!37&98@clean_date_month!35&98@clean_number!35&98@clean_email!38&98@clean_email!36&98@clean_email!39&98@
+cle|11|clean_type!35&98@clean_confirm_password!36&98@clean_confirm_password!37&98@clean_password!36&98@clean_password!37&98@clean_password!38&98@clean_date_month!35&98@clean_email!39&98@clean_email!37&98@clean_email!38&98@clean_number!35&98@
 cod|1|code!40&139@
 com|1|company!27&99@
 con|2|confirm_password!36&99@confirm_password!37&99@
@@ -163,11 +163,11 @@ cus|6|customer!34&35@customer!22&35@customer!33&35@customer!23&35@customer!28&13
 cvc|3|cvc!34&35@cvc!22&35@cvc!35&99@
 dat|2|date_year!35&99@date_month!35&99@
 des|3|description!42&75@description!26&75@description!30&75@
-ema|8|email!33&35@email!23&35@email!29&139@email!39&99@email!36&99@email!43&99@email!27&99@email!38&99@
+ema|8|email!33&35@email!23&35@email!29&139@email!38&99@email!27&99@email!39&99@email!37&99@email!43&99@
 exp|2|exp_date!34&35@exp_date!22&35@
 fax|3|fax!27&99@fax!33&35@fax!23&35@
-fie|2|fields!32&83@fields!44&83@
-fir|5|first!33&35@first!23&35@first_name!27&99@first_name!36&99@first!29&139@
+fie|2|fields!44&83@fields!32&83@
+fir|5|first!33&35@first!23&35@first_name!37&99@first_name!27&99@first!29&139@
 for|0|
 fre|1|free_shipping!40&139@
 get|1|get_search_results!32&82@
@@ -175,16 +175,16 @@ hid|1|hide!32&82@
 img|2|img!26&75@img!30&75@
 inl|1|inlines!32&83@
 ite|4|item_price!28&139@item_count!28&139@item_discount!28&139@item_skus!28&139@
-las|5|last!29&139@last!33&35@last!23&35@last_name!27&99@last_name!36&99@
+las|5|last!29&139@last!33&35@last!23&35@last_name!37&99@last_name!27&99@
 mes|1|message!43&99@
 mod|1|model!44&83@
 nam|8|name!35&99@name!34&35@name!22&35@name!42&75@name!26&75@name!30&75@name!31&75@name!25&74@
 non|1|non_us_state!27&99@
 num|3|number!34&35@number!22&35@number!35&99@
 ord|1|orders!29&139@
-org|4|orginization!33&35@orginization!23&35@orginization!29&139@orginization!36&99@
+org|4|orginization!33&35@orginization!23&35@orginization!29&139@orginization!37&99@
 par|1|parent_id!31&75@
-pas|4|password!29&139@password!36&99@password!37&99@password!38&99@
+pas|4|password!29&139@password!38&99@password!37&99@password!36&99@
 pay|2|payment_type!45&35@payment_type!24&35@
 pho|2|phone!33&35@phone!23&35@
 pre|3|pretty_price!25&74@pretty_price!26&74@pretty_price!30&74@
